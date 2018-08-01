@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+<title>Method GetErrorCode of class FTP_SERVICE</title>
+<meta content="text/html; charset=windows-1250" http-equiv="Content-Type" />
+<meta name="Generator" content="Project Documenting Machine" />
+<meta name="Version" content="1.3.3" />
+<link rel="stylesheet" href="../../css/foxw.css" type="text/css" />
+<link rel="stylesheet" href="../../css/sc.css" type="text/css" />
+<link rel="stylesheet" href="../../repository/ftp.css" type="text/css" />
+<script src="../../js/pdm.js" language="JavaScript" type="text/javascript"></script>
+<script src="../../repository/pdm_ab.js" language="JavaScript" type="text/javascript"></script>
+</head>
+<body>
+<div class="diaxp_mhead">GetErrorCode Method</div>
+<div class="diaxp_mbody_class">
+
+<table class="clear_table">
+ <tbody>
+  <tr><td>Class: </td><td><a href="cls.ftp_service.htm" title="Skip to class ftp_service">FTP_SERVICE</a></td></tr>
+  <tr><td>Description:</td><td>Watch dog of this FTP Service</td></tr>
+ </tbody>
+</table>
+</div>
+<div class="diaxp_mbody">
+ <div class="SC">
+  <img onclick="ExpandSC('SP_1',-1);"class="imgEC" src="../../imgs/uptab.gif" alt="Expand/Collapse source code of procedure GetErrorCode" id="IMG_SP_1" />
+  <span ondblclick="ExpandSC('SP_1',-1);" class="SCCaption"><a name="FTP_SERVICE">Source Code</a></span>
+  <div ondblclick="ExpandSC('SP_1',-1);" class="SCE" id="TX_SP_1">
+<!-- Code Begin -->
+<pre class="PDMCODE PDMNor" >      <span class='PDMResK'>LPARAMETERS</span> <span class='PDMVar'>INP</span> <span class='PDMVar'>llShowMessage</span>
+      <span class='PDMResK'>LOCAL</span> <span class='PDMVar'>lcMessage</span>
+      <span class='PDMResK'>IF</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>llShowMessage</span>
+<span class='PDMCom'>         * Build Error Message Here</span>
+         <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"Error ("</span> <span class='PDMOper'>+</span> <span class='PDMResF'>ALLTRIM</span><span class='PDMOper'>(</span><span class='PDMResF'>STR</span><span class='PDMOper'>(</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>nResult_Code</span><span class='PDMOper'>)</span><span class='PDMOper'>)</span> <span class='PDMOper'>+</span> <span class='PDMStr'>")  -  "</span> <span class='PDMOper'>+</span> <span class='PDMOper'>;</span>
+                     <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>GetErrorText</span><span class='PDMOper'>(</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>nResult_Code</span><span class='PDMOper'>)</span>
+         <span class='PDMResK'>IF</span> <span class='PDMOper'>!</span><span class='PDMResF'>EMPTY</span><span class='PDMOper'>(</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>cExtended_Message</span><span class='PDMOper'>)</span>
+            <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcMessage</span> <span class='PDMOper'>+</span> <span class='PDMResF'>CHR</span><span class='PDMOper'>(</span><span class='PDMLit'>13</span><span class='PDMOper'>)</span> <span class='PDMOper'>+</span> <span class='PDMResF'>CHR</span><span class='PDMOper'>(</span><span class='PDMLit'>13</span><span class='PDMOper'>)</span> <span class='PDMOper'>+</span> <span class='PDMStr'>"Extended Error Info - ("</span> <span class='PDMOper'>+</span> <span class='PDMOper'>;</span>
+                        <span class='PDMResF'>ALLTRIM</span><span class='PDMOper'>(</span><span class='PDMResF'>STR</span><span class='PDMOper'>(</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>nExtended_Result</span><span class='PDMOper'>)</span><span class='PDMOper'>)</span> <span class='PDMOper'>+</span> <span class='PDMOper'>;</span>
+                        <span class='PDMStr'>") - "</span> <span class='PDMOper'>+</span> <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>cExtended_Message</span>
+         <span class='PDMResK'>ENDIF</span>
+         <span class='PDMOper'>=</span><span class='PDMResF'>MESSAGEBOX</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcMessage</span><span class='PDMOper'>,</span> <span class='PDMLit'>48</span><span class='PDMOper'>,</span> <span class='PDMStr'>"FTP Error Message"</span><span class='PDMOper'>)</span>
+      <span class='PDMResK'>ENDIF</span>
+      <span class='PDMResK'>RETURN</span> <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>nResult_Code</span></pre>
+ <!-- Code End -->
+  </div>
+ </div>
+</div>
+<div class="diaxp_mfoot"></div>
+<script language="JavaScript" type="text/javascript">
+lo=document.getElementById("TX_SP_1");
+lo.XType="SourceCode";
+lo.Dir="../../imgs/";
+
+
+</script>
+</body>
+</html>

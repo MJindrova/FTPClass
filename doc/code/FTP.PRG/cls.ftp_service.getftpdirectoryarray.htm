@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+<title>Method GetFTPDirectoryArray of class FTP_SERVICE</title>
+<meta content="text/html; charset=windows-1250" http-equiv="Content-Type" />
+<meta name="Generator" content="Project Documenting Machine" />
+<meta name="Version" content="1.3.3" />
+<link rel="stylesheet" href="../../css/foxw.css" type="text/css" />
+<link rel="stylesheet" href="../../css/sc.css" type="text/css" />
+<link rel="stylesheet" href="../../repository/ftp.css" type="text/css" />
+<script src="../../js/pdm.js" language="JavaScript" type="text/javascript"></script>
+<script src="../../repository/pdm_ab.js" language="JavaScript" type="text/javascript"></script>
+</head>
+<body>
+<div class="diaxp_mhead">GetFTPDirectoryArray Method</div>
+<div class="diaxp_mbody_class">
+
+<table class="clear_table">
+ <tbody>
+  <tr><td>Class: </td><td><a href="cls.ftp_service.htm" title="Skip to class ftp_service">FTP_SERVICE</a></td></tr>
+  <tr><td>Description:</td><td>Get a list of files from the current directory on the FTP Server</td></tr>
+ </tbody>
+</table>
+</div>
+<div class="diaxp_mbody">
+ <div class="SC">
+  <img onclick="ExpandSC('SP_1',-1);"class="imgEC" src="../../imgs/uptab.gif" alt="Expand/Collapse source code of procedure GetFTPDirectoryArray" id="IMG_SP_1" />
+  <span ondblclick="ExpandSC('SP_1',-1);" class="SCCaption"><a name="FTP_SERVICE">Source Code</a></span>
+  <div ondblclick="ExpandSC('SP_1',-1);" class="SCE" id="TX_SP_1">
+<!-- Code Begin -->
+<pre class="PDMCODE PDMNor" >      <span class='PDMResK'>LPARAMETERS</span> <span class='PDMVar'>OUTREF</span> <span class='PDMVar'>laDirectory</span><span class='PDMOper'>,</span> <span class='PDMVar'>INP</span> <span class='PDMVar'>lcMask</span><span class='PDMOper'>,</span><span class='PDMVar'>OPT_INP</span> <span class='PDMVar'>lnFlag</span><span class='PDMOper'>,</span> <span class='PDMVar'>OUTREF</span> <span class='PDMVar'>liCount</span>
+      <span class='PDMResK'>LOCAL</span> <span class='PDMVar'>cStruct</span><span class='PDMOper'>,</span> <span class='PDMVar'>liResult</span><span class='PDMOper'>,</span> <span class='PDMVar'>fResult</span><span class='PDMOper'>,</span> <span class='PDMVar'>lffHandle</span><span class='PDMOper'>,</span><span class='PDMVar'>lii</span><span class='PDMOper'>,</span><span class='PDMVar'>lnSize</span>
+      <span class='PDMResK'>IF</span> <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>OpenFTPConnection</span><span class='PDMOper'>(</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>cCurrentDir</span><span class='PDMOper'>)</span>     <span class='PDMCom'>&amp;&amp; Open an FTP Handle</span>
+         <span class='PDMVar'>lcMask</span> <span class='PDMOper'>=</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcMask</span> <span class='PDMOper'>+</span> <span class='PDMVar'>cNULL</span>
+
+<span class='PDMCom'>         * Dimension the array to store the directory</span>
+<span class='PDMCom'>         * [x, 1] = FileName</span>
+<span class='PDMCom'>         * [x, 2] = Alternate FileName</span>
+<span class='PDMCom'>         * [x, 3] = File Size</span>
+<span class='PDMCom'>         * [x, 4] = File Create Date</span>
+<span class='PDMCom'>         * [x, 5] = File Last Access Time</span>
+<span class='PDMCom'>         * [x, 6] = File Last Write Time</span>
+<span class='PDMCom'>         * [x, 7] = File Attributes</span>
+         <span class='PDMResK'>DIMENSION</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>laDirectory</span> <span class='PDMOper'>[</span><span class='PDMLit'>1</span><span class='PDMOper'>,</span> <span class='PDMLit'>7</span><span class='PDMOper'>]</span>
+         <span class='PDMVar'>laDirectory</span> <span class='PDMOper'>[</span><span class='PDMLit'>1</span><span class='PDMOper'>,</span> <span class='PDMLit'>1</span><span class='PDMOper'>]</span> <span class='PDMOper'>=</span> <span class='PDMLit'>.F.</span>
+         <span class='PDMVar'>lnFlag</span><span class='PDMOper'>=</span><span class='PDMResF'>BITOR</span><span class='PDMOper'>(</span><span class='PDMVar'>INTERNET_FLAG_RELOAD</span><span class='PDMOper'>,</span><span class='PDMResF'>IIF</span><span class='PDMOper'>(</span><span class='PDMResF'>PCOUNT</span><span class='PDMOper'>(</span><span class='PDMOper'>)</span><span class='PDMOper'>&lt;=</span><span class='PDMLit'>3</span><span class='PDMOper'>,</span><span class='PDMLit'>0</span><span class='PDMOper'>,</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lnFlag</span><span class='PDMOper'>)</span><span class='PDMOper'>)</span>
+         <span class='PDMVar'>liCount</span><span class='PDMOper'>=</span><span class='PDMLit'>0</span>
+
+<span class='PDMCom'>         * This is for a FoxPro Quirk.</span>
+         <span class='PDMVar'>lcStruct</span> <span class='PDMOper'>=</span> <span class='PDMResF'>REPL</span><span class='PDMOper'>(</span><span class='PDMResF'>CHR</span><span class='PDMOper'>(</span><span class='PDMLit'>0</span><span class='PDMOper'>)</span><span class='PDMOper'>,</span><span class='PDMLit'>319</span><span class='PDMOper'>)</span><span class='PDMOper'>+</span><span class='PDMResF'>CHR</span><span class='PDMOper'>(</span><span class='PDMLit'>0</span><span class='PDMOper'>)</span>   <span class='PDMCom'>&amp;&amp; Allocate space for the returned structure</span>
+
+         <span class='PDMOper'>=</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>BeforeGetFTPDirectoryArray</span><span class='PDMOper'>(</span><span class='PDMOper'>@</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>laDirectory</span><span class='PDMOper'>,</span> <span class='PDMOper'>@</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcMask</span><span class='PDMOper'>,</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lnFlag</span><span class='PDMOper'>)</span>
+<span class='PDMCom'>         * Get the first file or find out if </span>
+         <span class='PDMVar'>lffHandle</span> <span class='PDMOper'>=</span> <span class='PDMVar'>ftps_FtpFindFirstFile</span><span class='PDMOper'>(</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>nConnect_Handle</span><span class='PDMOper'>,</span> <span class='PDMOper'>@</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcMask</span><span class='PDMOper'>,</span> <span class='PDMOper'>@</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcStruct</span><span class='PDMOper'>,</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lnFlag</span><span class='PDMOper'>,</span> <span class='PDMLit'>0</span><span class='PDMOper'>)</span>
+         <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>GetExtendedError</span><span class='PDMOper'>(</span><span class='PDMOper'>)</span>
+
+         <span class='PDMResK'>IF</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lffHandle</span> <span class='PDMOper'>=</span> <span class='PDMLit'>0</span> <span class='PDMOper'>AND</span> <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>nResult_Code</span> <span class='PDMOper'>&lt;&gt;</span> <span class='PDMVar'>ERROR_NO_MORE_FILES</span>
+            <span class='PDMResK'>RETURN</span> <span class='PDMLit'>.F.</span>
+         <span class='PDMResK'>ENDIF</span>
+
+         <span class='PDMResK'>IF</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lffHandle</span> <span class='PDMOper'>=</span> <span class='PDMLit'>0</span> <span class='PDMOper'>AND</span> <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>nResult_Code</span> <span class='PDMOper'>=</span> <span class='PDMVar'>ERROR_NO_MORE_FILES</span>
+            <span class='PDMResK'>RETURN</span> <span class='PDMLit'>.T.</span>
+         <span class='PDMResK'>ENDIF</span>
+
+<span class='PDMCom'>         * Parse out First File Information</span>
+         <span class='PDMOper'>=</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>CrackFile</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcStruct</span><span class='PDMOper'>,</span> <span class='PDMOper'>@</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>laDirectory</span><span class='PDMOper'>)</span>
+         <span class='PDMVar'>liCount</span><span class='PDMOper'>=</span><span class='PDMLit'>1</span>    
+         <span class='PDMVar'>llResult</span> <span class='PDMOper'>=</span> <span class='PDMLit'>1</span>
+         <span class='PDMResK'>DO</span> <span class='PDMResK'>WHILE</span> <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>nResult_Code</span> <span class='PDMOper'>!</span><span class='PDMOper'>=</span> <span class='PDMVar'>ERROR_NO_MORE_FILES</span> <span class='PDMOper'>AND</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>llResult</span> <span class='PDMOper'>!</span><span class='PDMOper'>=</span> <span class='PDMLit'>0</span>
+            <span class='PDMVar'>lcStruct</span> <span class='PDMOper'>=</span> <span class='PDMResF'>SPACE</span><span class='PDMOper'>(</span><span class='PDMLit'>319</span><span class='PDMOper'>)</span>
+<span class='PDMCom'>            * Get next files</span>
+            <span class='PDMVar'>liResult</span> <span class='PDMOper'>=</span> <span class='PDMVar'>ftps_InternetFindNextFile</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lffHandle</span><span class='PDMOper'>,</span> <span class='PDMOper'>@</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcStruct</span><span class='PDMOper'>)</span>
+            <span class='PDMOper'>=</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>GetExtendedError</span><span class='PDMOper'>(</span><span class='PDMOper'>)</span>
+
+<span class='PDMCom'>            * If we got good information, go ahead and parse it</span>
+            <span class='PDMResK'>IF</span> <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>nResult_Code</span> <span class='PDMOper'>!</span><span class='PDMOper'>=</span> <span class='PDMVar'>ERROR_NO_MORE_FILES</span> <span class='PDMOper'>AND</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>llResult</span> <span class='PDMOper'>!</span><span class='PDMOper'>=</span> <span class='PDMLit'>0</span>
+               <span class='PDMVar'>liCount</span><span class='PDMOper'>=</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>liCount</span><span class='PDMOper'>+</span><span class='PDMLit'>1</span>
+               <span class='PDMOper'>=</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>CrackFile</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcStruct</span><span class='PDMOper'>,</span> <span class='PDMOper'>@</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>laDirectory</span><span class='PDMOper'>)</span>
+            <span class='PDMResK'>ENDIF</span>
+         <span class='PDMResK'>ENDDO</span>
+         <span class='PDMOper'>=</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>AfterGetFTPDirectoryArray</span><span class='PDMOper'>(</span><span class='PDMOper'>@</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>laDirectory</span><span class='PDMOper'>,</span> <span class='PDMOper'>@</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcMask</span><span class='PDMOper'>,</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lnFlag</span><span class='PDMOper'>,</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>liResult</span><span class='PDMOper'>)</span>
+         <span class='PDMOper'>=</span><span class='PDMVar'>ftps_InternetCloseHandle</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lffHandle</span><span class='PDMOper'>)</span>
+
+         <span class='PDMResK'>FOR</span> <span class='PDMVar'>lii</span><span class='PDMOper'>=</span><span class='PDMLit'>1</span> <span class='PDMResK'>TO</span> <span class='PDMResF'>ALEN</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>laDirectory</span><span class='PDMOper'>,</span><span class='PDMLit'>1</span><span class='PDMOper'>)</span>
+             <span class='PDMResK'>IF</span> <span class='PDMResF'>ATC</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>laDirectory</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lii</span><span class='PDMOper'>,</span><span class='PDMLit'>7</span><span class='PDMOper'>)</span><span class='PDMOper'>,</span><span class='PDMStr'>"D"</span><span class='PDMOper'>)</span><span class='PDMOper'>=</span><span class='PDMLit'>0</span> <span class='PDMOper'>AND</span> <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>GetFileSize</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>laDirectory</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lii</span><span class='PDMOper'>,</span><span class='PDMLit'>1</span><span class='PDMOper'>)</span><span class='PDMOper'>,</span><span class='PDMOper'>@</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lnSize</span><span class='PDMOper'>)</span>
+                <span class='PDMVar'>laDirectory</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lii</span><span class='PDMOper'>,</span><span class='PDMLit'>3</span><span class='PDMOper'>)</span><span class='PDMOper'>=</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lnSize</span>
+             <span class='PDMResK'>ENDIF</span>
+         <span class='PDMResK'>NEXT</span>
+
+         <span class='PDMOper'>=</span><span class='PDMResF'>IIF</span><span class='PDMOper'>(</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>lMultiOperations</span><span class='PDMOper'>,</span><span class='PDMLit'>.T.</span><span class='PDMOper'>,</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>CloseFTPConnection</span><span class='PDMOper'>(</span><span class='PDMOper'>)</span><span class='PDMOper'>)</span>   <span class='PDMCom'>&amp;&amp; Close FTP Handle</span>
+         <span class='PDMResK'>RETURN</span> <span class='PDMLit'>.T.</span>
+      <span class='PDMResK'>ELSE</span>
+         <span class='PDMResK'>RETURN</span> <span class='PDMLit'>.F.</span>     <span class='PDMCom'>&amp;&amp; Unable to get FTP Connection    </span>
+      <span class='PDMResK'>ENDIF</span></pre>
+ <!-- Code End -->
+  </div>
+ </div>
+</div>
+<div class="diaxp_mfoot"></div>
+<script language="JavaScript" type="text/javascript">
+lo=document.getElementById("TX_SP_1");
+lo.XType="SourceCode";
+lo.Dir="../../imgs/";
+
+
+</script>
+</body>
+</html>

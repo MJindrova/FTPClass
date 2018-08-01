@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+<title>Method GetErrorText of class FTP_SERVICE</title>
+<meta content="text/html; charset=windows-1250" http-equiv="Content-Type" />
+<meta name="Generator" content="Project Documenting Machine" />
+<meta name="Version" content="1.3.3" />
+<link rel="stylesheet" href="../../css/foxw.css" type="text/css" />
+<link rel="stylesheet" href="../../css/sc.css" type="text/css" />
+<link rel="stylesheet" href="../../repository/ftp.css" type="text/css" />
+<script src="../../js/pdm.js" language="JavaScript" type="text/javascript"></script>
+<script src="../../repository/pdm_ab.js" language="JavaScript" type="text/javascript"></script>
+</head>
+<body>
+<div class="diaxp_mhead">GetErrorText Method</div>
+<div class="diaxp_mbody_class">
+
+<table class="clear_table">
+ <tbody>
+  <tr><td>Class: </td><td><a href="cls.ftp_service.htm" title="Skip to class ftp_service">FTP_SERVICE</a></td></tr>
+  <tr><td>Description:</td><td>Get error text</td></tr>
+ </tbody>
+</table>
+</div>
+<div class="diaxp_mbody">
+ <div class="SC">
+  <img onclick="ExpandSC('SP_1',-1);"class="imgEC" src="../../imgs/uptab.gif" alt="Expand/Collapse source code of procedure GetErrorText" id="IMG_SP_1" />
+  <span ondblclick="ExpandSC('SP_1',-1);" class="SCCaption"><a name="FTP_SERVICE">Source Code</a></span>
+  <div ondblclick="ExpandSC('SP_1',-1);" class="SCE" id="TX_SP_1">
+<!-- Code Begin -->
+<pre class="PDMCODE PDMNor" >      <span class='PDMResK'>LPARAMETERS</span> <span class='PDMVar'>INP</span> <span class='PDMVar'>lnError</span>
+      <span class='PDMResK'>LOCAL</span> <span class='PDMVar'>lcMessage</span>
+      <span class='PDMResK'>DO</span> <span class='PDMResK'>CASE</span>
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_OUT_OF_HANDLES</span>                
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_OUT_OF_HANDLES"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_TIMEOUT</span>                       
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_TIMEOUT"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_EXTENDED_ERROR</span>                
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_EXTENDED_ERROR"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_INTERNAL_ERROR</span>                
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_INTERNAL_ERROR"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_INVALID_URL</span>                   
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_INVALID_URL"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_UNRECOGNIZED_SCHEME</span>           
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_UNRECOGNIZED_SCHEME"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_NAME_NOT_RESOLVED</span>             
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_NAME_NOT_RESOLVED"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_PROTOCOL_NOT_FOUND</span>            
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_PROTOCOL_NOT_FOUND"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_INVALID_OPTION</span>                
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_INVALID_OPTION"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_BAD_OPTION_LENGTH</span>             
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_BAD_OPTION_LENGTH"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_OPTION_NOT_SETTABLE</span>           
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_OPTION_NOT_SETTABLE"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_SHUTDOWN</span>                      
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_SHUTDOWN"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_INCORRECT_USER_NAME</span>           
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_INCORRECT_USER_NAME"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_INCORRECT_PASSWORD</span>            
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_INCORRECT_PASSWORD"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_LOGIN_FAILURE</span>                 
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_LOGIN_FAILURE"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_INVALID_OPERATION</span>             
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_INVALID_OPERATION"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_OPERATION_CANCELLED</span>           
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_OPERATION_CANCELLED"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_INCORRECT_HANDLE_TYPE</span>         
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_INCORRECT_HANDLE_TYPE"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_INCORRECT_HANDLE_STATE</span>        
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_INCORRECT_HANDLE_STATE"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_NOT_PROXY_REQUEST</span>             
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_NOT_PROXY_REQUEST"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_REGISTRY_VALUE_NOT_FOUND</span>      
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_REGISTRY_VALUE_NOT_FOUND"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_BAD_REGISTRY_PARAMETER</span>        
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_BAD_REGISTRY_PARAMETER"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_NO_DIRECT_ACCESS</span>              
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_NO_DIRECT_ACCESS"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_NO_CONTEXT</span>                    
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_NO_CONTEXT"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_NO_CALLBACK</span>                   
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_NO_CALLBACK"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_REQUEST_PENDING</span>               
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_REQUEST_PENDING"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_INCORRECT_FORMAT</span>              
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_INCORRECT_FORMAT"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_ITEM_NOT_FOUND</span>                
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_ITEM_NOT_FOUND"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_CANNOT_CONNECT</span>                
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_CANNOT_CONNECT"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_CONNECTION_ABORTED</span>            
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_CONNECTION_ABORTED"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_CONNECTION_RESET</span>              
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_CONNECTION_RESET"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_FORCE_RETRY</span>                   
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_FORCE_RETRY"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_INVALID_PROXY_REQUEST</span>         
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_INVALID_PROXY_REQUEST"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_NEED_UI</span>                       
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_NEED_UI"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_HANDLE_EXISTS</span>                 
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_HANDLE_EXISTS"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_SEC_CERT_DATE_INVALID</span>         
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_SEC_CERT_DATE_INVALID"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_SEC_CERT_CN_INVALID</span>           
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_SEC_CERT_CN_INVALID"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_HTTP_TO_HTTPS_ON_REDIR</span>        
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_HTTP_TO_HTTPS_ON_REDIR"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_HTTPS_TO_HTTP_ON_REDIR</span>        
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_HTTPS_TO_HTTP_ON_REDIR"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_MIXED_SECURITY</span>                
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_MIXED_SECURITY"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_CHG_POST_IS_NON_SECURE</span>        
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_CHG_POST_IS_NON_SECURE"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_POST_IS_NON_SECURE</span>            
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_POST_IS_NON_SECURE"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_CLIENT_AUTH_CERT_NEEDED</span>       
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_CLIENT_AUTH_CERT_NEEDED"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_INVALID_CA</span>                    
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_INVALID_CA"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_CLIENT_AUTH_NOT_SETUP</span>         
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_CLIENT_AUTH_NOT_SETUP"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_ASYNC_THREAD_FAILED</span>           
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_ASYNC_THREAD_FAILED"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_REDIRECT_SCHEME_CHANGE</span>        
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_REDIRECT_SCHEME_CHANGE"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_DIALOG_PENDING</span>                
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_DIALOG_PENDING"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_RETRY_DIALOG</span>                  
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_RETRY_DIALOG"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_HTTPS_HTTP_SUBMIT_REDIR</span>       
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_HTTPS_HTTP_SUBMIT_REDIR"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_INSERT_CDROM</span>                  
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_INSERT_CDROM"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>FTP_TRANSFER_IN_PROGRESS</span>                     
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"FTP_TRANSFER_IN_PROGRESS"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>FTP_DROPPED</span>                                  
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"FTP_DROPPED"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>FTP_NO_PASSIVE_MODE</span>                          
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"FTP_NO_PASSIVE_MODE"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_SECURITY_CHANNEL_ERROR</span>        
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_SECURITY_CHANNEL_ERROR"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_UNABLE_TO_CACHE_FILE</span>          
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_UNABLE_TO_CACHE_FILE"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_TCPIP_NOT_INSTALLED</span>           
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_TCPIP_NOT_INSTALLED"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_DISCONNECTED</span>                  
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_DISCONNECTED"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_SERVER_UNREACHABLE</span>            
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_SERVER_UNREACHABLE"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_PROXY_SERVER_UNREACHABLE</span>      
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_PROXY_SERVER_UNREACHABLE"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_BAD_AUTO_PROXY_SCRIPT</span>         
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_BAD_AUTO_PROXY_SCRIPT"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_UNABLE_TO_DOWNLOAD_SCRIPT</span>     
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_UNABLE_TO_DOWNLOAD_SCRIPT"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_SEC_INVALID_CERT</span>                 
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_SEC_INVALID_CERT"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INTERNET_SEC_CERT_REVOKED</span>                 
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INTERNET_SEC_CERT_REVOKED"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_NO_MORE_FILES</span>
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_NO_MORE_FILES"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INVALID_HANDLE</span>
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INVALID_HANDLE"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_FILE_NOT_FOUND</span>
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_FILE_NOT_FOUND"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_PATH_NOT_FOUND</span>
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_PATH_NOT_FOUND"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_ACCESS_DENIED</span>
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_ACCESS_DENIED"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_FILE_EXISTS</span>
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_FILE_EXISTS"</span>
+
+         <span class='PDMResK'>CASE</span> <span class='PDMVar'>lnError</span> <span class='PDMOper'>=</span>  <span class='PDMVar'>ERROR_INVALID_PARAMETER</span>
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"ERROR_INVALID_PARAMETER"</span>
+
+         <span class='PDMResK'>OTHERWISE</span>    
+              <span class='PDMVar'>lcMessage</span> <span class='PDMOper'>=</span> <span class='PDMStr'>"Unknown Error Message"</span>
+      <span class='PDMResK'>ENDCASE</span>
+      <span class='PDMResK'>RETURN</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcMessage</span></pre>
+ <!-- Code End -->
+  </div>
+ </div>
+</div>
+<div class="diaxp_mfoot"></div>
+<script language="JavaScript" type="text/javascript">
+lo=document.getElementById("TX_SP_1");
+lo.XType="SourceCode";
+lo.Dir="../../imgs/";
+
+
+</script>
+</body>
+</html>

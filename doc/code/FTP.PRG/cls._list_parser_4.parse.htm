@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+<title>Method Parse of class _LIST_PARSER_4</title>
+<meta content="text/html; charset=windows-1250" http-equiv="Content-Type" />
+<meta name="Generator" content="Project Documenting Machine" />
+<meta name="Version" content="1.3.3" />
+<link rel="stylesheet" href="../../css/foxw.css" type="text/css" />
+<link rel="stylesheet" href="../../css/sc.css" type="text/css" />
+<link rel="stylesheet" href="../../repository/ftp.css" type="text/css" />
+<script src="../../js/pdm.js" language="JavaScript" type="text/javascript"></script>
+<script src="../../repository/pdm_ab.js" language="JavaScript" type="text/javascript"></script>
+</head>
+<body>
+<div class="diaxp_mhead">Parse Method</div>
+<div class="diaxp_mbody_class">
+
+<table class="clear_table">
+ <tbody>
+  <tr><td>Class: </td><td><a href="cls._list_parser_4.htm" title="Skip to class _list_parser_4">_LIST_PARSER_4</a></td></tr>
+  <tr><td>Description:</td><td></td></tr>
+ </tbody>
+</table>
+</div>
+<div class="diaxp_mbody">
+ <div class="SC">
+  <img onclick="ExpandSC('SP_7',-1);"class="imgEC" src="../../imgs/uptab.gif" alt="Expand/Collapse source code of procedure Parse" id="IMG_SP_7" />
+  <span ondblclick="ExpandSC('SP_7',-1);" class="SCCaption"><a name="_LIST_PARSER_4">Source Code</a></span>
+  <div ondblclick="ExpandSC('SP_7',-1);" class="SCE" id="TX_SP_7">
+<!-- Code Begin -->
+<pre class="PDMCODE PDMNor" >      <span class='PDMResK'>LPARAMETERS</span> <span class='PDMVar'>CHNGREF</span> <span class='PDMVar'>laFiles</span><span class='PDMOper'>,</span><span class='PDMVar'>INP</span> <span class='PDMVar'>loEngine</span>
+      <span class='PDMResK'>EXTERNAL</span> <span class='PDMResK'>ARRAY</span> <span class='PDMVar'>laFiles</span>
+      <span class='PDMResK'>LOCAL</span> <span class='PDMVar'>liEnd</span><span class='PDMOper'>,</span><span class='PDMVar'>lcData</span><span class='PDMOper'>,</span><span class='PDMVar'>lii</span><span class='PDMOper'>,</span><span class='PDMVar'>liAT</span><span class='PDMOper'>,</span><span class='PDMVar'>liy</span><span class='PDMOper'>,</span><span class='PDMVar'>liz</span><span class='PDMOper'>,</span><span class='PDMVar'>lcPom</span><span class='PDMOper'>,</span><span class='PDMVar'>lnFileSize</span>
+      <span class='PDMResK'>DIMENSION</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>laFiles</span><span class='PDMOper'>(</span><span class='PDMLit'>100</span><span class='PDMOper'>,</span><span class='PDMLit'>7</span><span class='PDMOper'>)</span>
+      <span class='PDMVar'>liEnd</span><span class='PDMOper'>=</span><span class='PDMResF'>AT</span><span class='PDMOper'>(</span><span class='PDMVar'>CRLF</span><span class='PDMOper'>,</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>loEngine</span><span class='PDMOper'>.</span><span class='PDMVar'>cData</span><span class='PDMOper'>,</span><span class='PDMLit'>1</span><span class='PDMOper'>)</span>
+      <span class='PDMVar'>lii</span><span class='PDMOper'>=</span><span class='PDMLit'>0</span>
+
+      <span class='PDMResK'>DO</span> <span class='PDMResK'>WHILE</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>liEnd</span><span class='PDMOper'>&gt;</span><span class='PDMLit'>0</span>
+         <span class='PDMVar'>lcData</span><span class='PDMOper'>=</span><span class='PDMResF'>LEFT</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>loEngine</span><span class='PDMOper'>.</span><span class='PDMVar'>cData</span><span class='PDMOper'>,</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>liEnd</span><span class='PDMOper'>-</span><span class='PDMLit'>1</span><span class='PDMOper'>)</span>
+         <span class='PDMVar'>loEngine</span><span class='PDMOper'>.</span><span class='PDMVar'>cData</span><span class='PDMOper'>=</span><span class='PDMResF'>SUBSTR</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>loEngine</span><span class='PDMOper'>.</span><span class='PDMVar'>cData</span><span class='PDMOper'>,</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>liEnd</span><span class='PDMOper'>+</span><span class='PDMLit'>2</span><span class='PDMOper'>)</span>
+         <span class='PDMVar'>liEnd</span><span class='PDMOper'>=</span><span class='PDMResF'>AT</span><span class='PDMOper'>(</span><span class='PDMVar'>CRLF</span><span class='PDMOper'>,</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>loEngine</span><span class='PDMOper'>.</span><span class='PDMVar'>cData</span><span class='PDMOper'>,</span><span class='PDMLit'>1</span><span class='PDMOper'>)</span>
+
+         <span class='PDMVar'>lii</span><span class='PDMOper'>=</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lii</span><span class='PDMOper'>+</span><span class='PDMLit'>1</span>
+         <span class='PDMResK'>IF</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lii</span><span class='PDMOper'>&gt;</span><span class='PDMResF'>ALEN</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>laFiles</span><span class='PDMOper'>,</span><span class='PDMLit'>1</span><span class='PDMOper'>)</span>
+            <span class='PDMResK'>DIMENSION</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>laFiles</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lii</span><span class='PDMOper'>+</span><span class='PDMLit'>100</span><span class='PDMOper'>,</span><span class='PDMLit'>7</span><span class='PDMOper'>)</span>
+         <span class='PDMResK'>ENDIF</span>            
+<span class='PDMCom'>         * Row processing</span>
+         <span class='PDMVar'>laFiles</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lii</span><span class='PDMOper'>,</span><span class='PDMLit'>1</span><span class='PDMOper'>)</span><span class='PDMOper'>=</span><span class='PDMResF'>LEFT</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcData</span><span class='PDMOper'>,</span><span class='PDMLit'>1</span><span class='PDMOper'>)</span><span class='PDMOper'>+</span><span class='PDMResF'>SUBSTR</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcData</span><span class='PDMOper'>,</span><span class='PDMLit'>4</span><span class='PDMOper'>,</span><span class='PDMLit'>8</span><span class='PDMOper'>)</span>
+         <span class='PDMVar'>laFiles</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lii</span><span class='PDMOper'>,</span><span class='PDMLit'>2</span><span class='PDMOper'>)</span><span class='PDMOper'>=</span><span class='PDMLit'>0</span>
+
+<span class='PDMCom'>         * Check where is: "Mon Da HH:MM" or "Mon Da  YYYY"</span>
+         <span class='PDMVar'>liAT</span><span class='PDMOper'>=</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>FindDT</span><span class='PDMOper'>(</span><span class='PDMOper'>@</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcData</span><span class='PDMOper'>)</span>
+         <span class='PDMResK'>IF</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>liAT</span><span class='PDMOper'>=</span><span class='PDMLit'>0</span> <span class='PDMCom'>&amp;&amp; Fail at parsing file</span>
+            <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>oFTP</span><span class='PDMOper'>.</span><span class='PDMVar'>SetExtendedError</span><span class='PDMOper'>(</span><span class='PDMVar'>_FTPS_UE_PLF</span><span class='PDMOper'>,</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcRow</span><span class='PDMOper'>)</span>
+            <span class='PDMResK'>RETURN</span> <span class='PDMLit'>.F.</span>
+         <span class='PDMResK'>ENDIF</span>
+
+<span class='PDMCom'>         * Date last modify</span>
+         <span class='PDMVar'>laFiles</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lii</span><span class='PDMOper'>,</span><span class='PDMLit'>6</span><span class='PDMOper'>)</span><span class='PDMOper'>=</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>FormatDT</span><span class='PDMOper'>(</span><span class='PDMResF'>SUBSTR</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcData</span><span class='PDMOper'>,</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>liAT</span><span class='PDMOper'>,</span><span class='PDMLit'>12</span><span class='PDMOper'>)</span><span class='PDMOper'>)</span>
+
+<span class='PDMCom'>         * File name</span>
+         <span class='PDMVar'>laFiles</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lii</span><span class='PDMOper'>,</span><span class='PDMLit'>7</span><span class='PDMOper'>)</span><span class='PDMOper'>=</span><span class='PDMResF'>RTRIM</span><span class='PDMOper'>(</span><span class='PDMResF'>SUBSTR</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcData</span><span class='PDMOper'>,</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>liAT</span><span class='PDMOper'>+</span><span class='PDMLit'>13</span><span class='PDMOper'>)</span><span class='PDMOper'>)</span>
+
+<span class='PDMCom'>         * from 16. char to liAT-2 are two columns</span>
+         <span class='PDMVar'>lcPom</span><span class='PDMOper'>=</span><span class='PDMResF'>ALLTRIM</span><span class='PDMOper'>(</span><span class='PDMResF'>SUBSTR</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcData</span><span class='PDMOper'>,</span><span class='PDMLit'>14</span><span class='PDMOper'>,</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>liAT</span><span class='PDMOper'>-</span><span class='PDMLit'>14</span><span class='PDMOper'>-</span><span class='PDMLit'>1</span><span class='PDMOper'>)</span><span class='PDMOper'>)</span>
+         <span class='PDMVar'>liy</span><span class='PDMOper'>=</span><span class='PDMResF'>AT</span><span class='PDMOper'>(</span><span class='PDMStr'>" "</span><span class='PDMOper'>,</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcPom</span><span class='PDMOper'>)</span>
+         <span class='PDMVar'>laFiles</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lii</span><span class='PDMOper'>,</span><span class='PDMLit'>3</span><span class='PDMOper'>)</span><span class='PDMOper'>=</span><span class='PDMResF'>ALLTRIM</span><span class='PDMOper'>(</span><span class='PDMResF'>LEFT</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcPom</span><span class='PDMOper'>,</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>liy</span><span class='PDMOper'>-</span><span class='PDMLit'>1</span><span class='PDMOper'>)</span><span class='PDMOper'>)</span>      <span class='PDMCom'>&amp;&amp; Owner</span>
+         <span class='PDMVar'>laFiles</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lii</span><span class='PDMOper'>,</span><span class='PDMLit'>4</span><span class='PDMOper'>)</span><span class='PDMOper'>=</span><span class='PDMStr'>""</span>     <span class='PDMCom'>&amp;&amp; Group</span>
+<span class='PDMCom'>*         laFiles(m.lii,5)=VAL(ALLT(SUBSTR(m.lcPom,m.liy+1))) &amp;&amp; Size</span>
+         <span class='PDMResK'>IF</span> <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>oFTP</span><span class='PDMOper'>.</span><span class='PDMVar'>GetFileSize</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>laFiles</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lii</span><span class='PDMOper'>,</span><span class='PDMLit'>7</span><span class='PDMOper'>)</span><span class='PDMOper'>,</span><span class='PDMOper'>@</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lnFileSize</span><span class='PDMOper'>)</span>
+            <span class='PDMVar'>laFiles</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lii</span><span class='PDMOper'>,</span><span class='PDMLit'>5</span><span class='PDMOper'>)</span><span class='PDMOper'>=</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lnFileSize</span>
+         <span class='PDMResK'>ENDIF</span>
+
+      <span class='PDMResK'>ENDDO</span>
+      <span class='PDMResK'>IF</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lii</span><span class='PDMOper'>&gt;</span><span class='PDMLit'>0</span> <span class='PDMOper'>AND</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lii</span><span class='PDMOper'>&lt;&gt;</span><span class='PDMResF'>ALEN</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>laFiles</span><span class='PDMOper'>,</span><span class='PDMLit'>1</span><span class='PDMOper'>)</span>
+         <span class='PDMResK'>DIMENSION</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>laFiles</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lii</span><span class='PDMOper'>,</span><span class='PDMLit'>7</span><span class='PDMOper'>)</span>
+      <span class='PDMResK'>ENDIF</span>
+      <span class='PDMResK'>RETURN</span> <span class='PDMLit'>.T.</span></pre>
+ <!-- Code End -->
+  </div>
+ </div>
+</div>
+<div class="diaxp_mfoot"></div>
+<script language="JavaScript" type="text/javascript">
+lo=document.getElementById("TX_SP_7");
+lo.XType="SourceCode";
+lo.Dir="../../imgs/";
+
+
+</script>
+</body>
+</html>

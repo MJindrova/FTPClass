@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+<title>Method GetFileSize of class FTP_SERVICE</title>
+<meta content="text/html; charset=windows-1250" http-equiv="Content-Type" />
+<meta name="Generator" content="Project Documenting Machine" />
+<meta name="Version" content="1.3.3" />
+<link rel="stylesheet" href="../../css/foxw.css" type="text/css" />
+<link rel="stylesheet" href="../../css/sc.css" type="text/css" />
+<link rel="stylesheet" href="../../repository/ftp.css" type="text/css" />
+<script src="../../js/pdm.js" language="JavaScript" type="text/javascript"></script>
+<script src="../../repository/pdm_ab.js" language="JavaScript" type="text/javascript"></script>
+</head>
+<body>
+<div class="diaxp_mhead">GetFileSize Method</div>
+<div class="diaxp_mbody_class">
+
+<table class="clear_table">
+ <tbody>
+  <tr><td>Class: </td><td><a href="cls.ftp_service.htm" title="Skip to class ftp_service">FTP_SERVICE</a></td></tr>
+  <tr><td>Description:</td><td>Get File Size</td></tr>
+ </tbody>
+</table>
+</div>
+<div class="diaxp_mbody">
+ <div class="SC">
+  <img onclick="ExpandSC('SP_1',-1);"class="imgEC" src="../../imgs/uptab.gif" alt="Expand/Collapse source code of procedure GetFileSize" id="IMG_SP_1" />
+  <span ondblclick="ExpandSC('SP_1',-1);" class="SCCaption"><a name="FTP_SERVICE">Source Code</a></span>
+  <div ondblclick="ExpandSC('SP_1',-1);" class="SCE" id="TX_SP_1">
+<!-- Code Begin -->
+<pre class="PDMCODE PDMNor" >      <span class='PDMResK'>LPARAMETERS</span> <span class='PDMVar'>INP</span> <span class='PDMVar'>lcFile</span><span class='PDMOper'>,</span> <span class='PDMVar'>CHNGREF</span> <span class='PDMVar'>lnSize</span>
+      <span class='PDMResK'>LOCAL</span> <span class='PDMVar'>lcPom</span><span class='PDMOper'>,</span><span class='PDMVar'>llRet</span>
+      <span class='PDMResK'>IF</span> <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>OpenFTPConnection</span><span class='PDMOper'>(</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>cCurrentDir</span><span class='PDMOper'>)</span>     <span class='PDMCom'>&amp;&amp; Open an FTP Handle</span>
+         <span class='PDMVar'>lcFile</span> <span class='PDMOper'>=</span> <span class='PDMResF'>ALLTRIM</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcFile</span><span class='PDMOper'>)</span><span class='PDMOper'>+</span><span class='PDMVar'>cNULL</span>
+
+         <span class='PDMOper'>=</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>BeforeGetFileSize</span><span class='PDMOper'>(</span><span class='PDMOper'>@</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcFile</span><span class='PDMOper'>,</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lnSize</span><span class='PDMOper'>)</span>
+<span class='PDMCom'>         *!* FtpGetFileSize does not work as expected for files greater then 4Gb (dwFileSizeHigh always NULL)</span>
+<span class='PDMCom'>         *!* http://groups.google.com.ar/group/microsoft.public.windows.inetexplorer.ie5.programming.wininet/browse_thread/thread/3c118ed4c7c32269/791a868311e60a00?lnk=st&amp;q=ftpfindfirstfile+and+large+files&amp;rnum=2&amp;hl=es#791a868311e60a00</span>
+
+         <span class='PDMVar'>llRet</span><span class='PDMOper'>=</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>_FTPCommand</span><span class='PDMOper'>(</span><span class='PDMStr'>"SIZE "</span><span class='PDMOper'>+</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcFile</span><span class='PDMOper'>,</span><span class='PDMVar'>FTP_TRANSFER_TYPE_BINARY</span><span class='PDMOper'>,</span><span class='PDMLit'>0</span><span class='PDMOper'>,</span><span class='PDMOper'>.</span><span class='PDMResK'>NULL</span><span class='PDMOper'>.</span><span class='PDMOper'>)</span>
+         <span class='PDMResK'>IF</span> <span class='PDMVar'>llRet</span>
+            <span class='PDMVar'>lcPom</span><span class='PDMOper'>=</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>GetExtendedErrorMsg</span><span class='PDMOper'>(</span><span class='PDMOper'>)</span>
+            <span class='PDMVar'>lnSize</span><span class='PDMOper'>=</span><span class='PDMResF'>VAL</span><span class='PDMOper'>(</span><span class='PDMResF'>SUBSTR</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcPom</span><span class='PDMOper'>,</span><span class='PDMResF'>AT</span><span class='PDMOper'>(</span><span class='PDMStr'>" "</span><span class='PDMOper'>,</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcPom</span><span class='PDMOper'>)</span><span class='PDMOper'>+</span><span class='PDMLit'>1</span><span class='PDMOper'>)</span><span class='PDMOper'>)</span>
+         <span class='PDMResK'>ENDIF</span>
+
+         <span class='PDMOper'>=</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>AfterGetFileSize</span><span class='PDMOper'>(</span><span class='PDMOper'>@</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcFile</span><span class='PDMOper'>,</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lnSize</span><span class='PDMOper'>,</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>llRet</span><span class='PDMOper'>)</span>
+         <span class='PDMOper'>=</span><span class='PDMResF'>IIF</span><span class='PDMOper'>(</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>lMultiOperations</span><span class='PDMOper'>,</span><span class='PDMLit'>.T.</span><span class='PDMOper'>,</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>CloseFTPConnection</span><span class='PDMOper'>(</span><span class='PDMOper'>)</span><span class='PDMOper'>)</span>   <span class='PDMCom'>&amp;&amp; Close FTP Handle</span>
+         <span class='PDMResK'>RETURN</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>llRet</span>
+      <span class='PDMResK'>ENDIF</span>
+      <span class='PDMResK'>RETURN</span> <span class='PDMLit'>.F.</span>                    </pre>
+ <!-- Code End -->
+  </div>
+ </div>
+</div>
+<div class="diaxp_mfoot"></div>
+<script language="JavaScript" type="text/javascript">
+lo=document.getElementById("TX_SP_1");
+lo.XType="SourceCode";
+lo.Dir="../../imgs/";
+
+
+</script>
+</body>
+</html>

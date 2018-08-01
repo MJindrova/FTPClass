@@ -1,0 +1,471 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" height="100%">
+<head>
+<title>FTP Class 2.0.9</title>
+<meta content="text/html; charset=windows-1252" http-equiv="Content-Type" />
+<style>
+div.metagroup {width:auto; margin-top:2em; margin-right:1em; height:100%; position: relative;}
+
+td.subgroup_m, td.subgroup_e, td.subgroup_p {font-size:14pt;font-weight: bold;}
+
+tr.pemgroup_head {background-color:#C9C9C9; }
+tr.pemgroup_head td {border-bottom: 1px solid;font-size:18pt;font-weight: bold;}
+
+table.pemgroup {border-width:1px; border-style:solid; border-color:#000000 ; position: relative}
+table.pemgroup td {padding:2px;}
+
+colgroup.subgroup_m  {background-color:#BFCFFF}
+colgroup.subgroup_e {background-color:#CCD9FF}
+colgroup.subgroup_p {background-color:#D9E2FF}
+
+
+divx {border-width:1px; border-style: solid;}
+
+</style>
+</head>
+<body  height="100%">
+<h1>FTP Class 2.0.9</h1>
+<div>
+FTP Class 2.0.9 is base on FTP Class 1.1a by Robert Abram.
+</div>
+<div>
+ <h2>Acknowledgments</h2>
+ ...VFP comunnity on internet for many examples "How to use FTP class".
+</div>
+
+<div>
+ <h2>What is new...</h2>
+ <div>
+ - Read&amp;Write resume support<br />
+ - Native FTP Command<br />
+ - Multi operations<br />
+ - User's events<br />
+ - Native passive mode<br />
+ - Proxy support<br />
+ </div>
+</div>
+
+<div>
+ <h2><a href="qa.htm">Questions and Answers...</a></h2>
+</div>
+
+<div style="margin-top:1em;">
+ <a href="#dial_group">Dial group</a> | <a href="#folder_group">Folder group</a> | <a href="#file_group">File group</a> | <a href="#system_group">System group</a> | <a href="#core_group">Core group</a> | <a href="#proxy_group">Proxy group</a>
+</div>
+
+<div class="metagroup"  style="float: left;">
+ <a name="dial_group" />
+ <table cellspacing="0" class="pemgroup">
+  <thead>
+   <tr class="pemgroup_head"><td colspan="2">Dial group</td></tr>
+  </thead>
+
+  <colgroup class="subgroup_m"></colgroup>
+  <colgroup class="subgroup_e"></colgroup>
+  <thead>
+   <tr><td class="subgroup_m">Methods</td><td class="subgroup_e">Events</td></tr>
+  </thead>
+
+  <tbody>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.autodialhangup.htm" target="_parent">AutoDialHangUp</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.afterautodialhangup.htm" target="_parent">AfterAutoDialHangUp</a></td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.autodialinternet.htm" target="_parent">AutoDialInternet</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.afterautodialinternet.htm" target="_parent">AfterAutoDialInternet</a></td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.dialhangup.htm" target="_parent">DialHangUp</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.afterdialhangup.htm" target="_parent">AfterDialHangUp</a></td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.dialinternet.htm" target="_parent">DialInternet</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.afterdialinternet.htm" target="_parent">AfterDialInternet</a></td>
+   </tr>
+   <tr>
+    <td>&nbsp;</td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.beforeautodialhangUp.htm" target="_parent">BeforeAutoDialHangUp</a></td>
+   </tr>
+   <tr>
+    <td>&nbsp;</td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.beforeautodialinternet.htm" target="_parent">BeforeAutoDialInternet</a></td>
+   </tr>
+   <tr>
+    <td>&nbsp;</td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.beforedialhangup.htm" target="_parent">BeforeDialHangUp</a></td>
+   </tr>
+   <tr>
+    <td>&nbsp;</td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.beforedialinternet.htm" target="_parent">BeforeDialInternet</a></td>
+   </tr>
+   <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+  </tbody>
+ </table>
+
+ <a name="file_group" />
+ <table cellspacing="0" class="pemgroup" style="margin-top:5px;">
+
+  <thead>
+   <tr class="pemgroup_head"><td colspan="2">File group</td></tr>
+  </thead>
+
+  <colgroup class="subgroup_m"></colgroup>
+  <colgroup class="subgroup_e"></colgroup>
+  <thead>
+   <tr><td class="subgroup_m">Methods</td><td class="subgroup_e">Events</td></tr>
+  </thead>
+
+  <tbody>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.deleteftpfile.htm" target="_parent">DeleteFtpFile</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.afterdeleteftpfile.htm" target="_parent">AfterDeleteFTPFile</a></td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.getftpfile.htm" target="_parent">GetFtpFile</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.aftergetftpfile.htm" target="_parent">AfterGetFTPFile</a></td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.putftpfile.htm" target="_parent">PutFtpFile</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.afterputftpfile.htm" target="_parent">AfterPutFTPFile</a></td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.readftpfile.htm" target="_parent">ReadFtpFile</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.afterreadftpfile.htm" target="_parent">AfterReadFTPFile</a></td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.renameftpfile.htm" target="_parent">RenameFtpFile</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.afterwriteftpfile.htm" target="_parent">AfterWriteFTPFile</a></a></td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.writeftpfile.htm" target="_parent">WriteFtpFile</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.atreadftpfile.htm" target="_parent">AtReadFTPFile</a></td>
+   </tr>
+
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.getfilesize.htm" target="_parent">GetFileSize</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.afterrenameftpfile.htm" target="_parent">AfterRenameFTPFile</a></td>
+   </tr>
+   <tr>
+    <td>&nbsp;</td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.atwriteftpfile.htm" target="_parent">AtWriteFTPFile</a></td>
+   </tr>
+   <tr>
+    <td>&nbsp;</td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.beforedeleteftpfile.htm" target="_parent">BeforeDeleteFTPFile</a></td>
+   </tr>
+   <tr>
+    <td>&nbsp;</td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.beforegetftpfile.htm" target="_parent">BeforeGetFTPFile</a></td>
+   </tr>
+   <tr>
+    <td>&nbsp;</td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.beforeputftpfile.htm" target="_parent">BeforePutFTPFile</a></td>
+   </tr>
+   <tr>
+    <td>&nbsp;</td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.atwriteftpfile.htm" target="_parent">BeforeReadFTPFile</a></td>
+   </tr>
+   <tr>
+    <td>&nbsp;</td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.beforerenameftpfile.htm" target="_parent">BeforeRenameFTPFile</a></td>
+   </tr>
+   <tr>
+    <td>&nbsp;</td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.beforewriteftpfile.htm" target="_parent">BeforeWriteFTPFile</a></td>
+   </tr>
+
+   <tr>
+    <td>&nbsp;</td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.beforegetfilesize.htm" target="_parent">BeforeGetFileSize</a></td>
+   </tr>
+   <tr>
+    <td>&nbsp;</td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.aftergetfilesize.htm" target="_parent">AfterGetFileSize</a></td>
+   </tr>
+
+   <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+
+   <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+
+  </tbody>
+ </table>
+
+ <a name="core_group" />
+ <table cellspacing="0" class="pemgroup" style="margin-top:10px;">
+  <thead>
+   <tr class="pemgroup_head"><td colspan="2">Core group</td></tr>
+  </thead>
+
+  <colgroup class="subgroup_m"></colgroup>
+  <colgroup class="subgroup_p"></colgroup>
+
+  <thead>
+   <tr><td class="subgroup_m">Methods</td><td class="subgroup_p">Properties</td></tr>
+  </thead>
+
+  <tbody>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.crackattributes.htm" target="_parent">CrackAttributes</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.cextended_message.htm" target="_parent">cExtended_Message</a></td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.crackdate.htm" target="_parent">CrackDate</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.ldll_loaded.htm" target="_parent">lDLL_Loaded</a></td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.crackfile.htm" target="_parent">CrackFile</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.nconnect_handle.htm" target="_parent">nConnect_Handle</a></td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.getextendederror.htm" target="_parent">GetExtendedError</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.nextended_result.htm" target="_parent">nExtended_Result</a></td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.getsystemoption.htm" target="_parent">GetSystemOption</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.ninet_handle.htm" target="_parent">nInet_Handle</a></td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.init.htm" target="_parent">Init</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.nresult_code.htm" target="_parent">nResult_Code</a></td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.loadapifuncs.htm" target="_parent">LoadAPIFuncs</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.olistpe.htm" target="_parent">oListPE</a></td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.setextendederror.htm" target="_parent">SetExtendedError</a></td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service._ftpcommand.htm" target="_parent">_FTPCommand</a></td>
+    <td>&nbsp;</td>
+   </tr>
+  </tbody>
+ </table>
+
+
+</div>
+
+<div class="metagroup">
+
+ <a name="folder_group" />
+ <table cellspacing="0" class="pemgroup">
+  <thead>
+   <tr class="pemgroup_head"><td colspan="3">Folder group</td></tr>
+  </thead>
+
+  <colgroup class="subgroup_m"></colgroup>
+  <colgroup class="subgroup_e"></colgroup>
+  <colgroup class="subgroup_p"></colgroup>
+  <thead>
+   <tr><td class="subgroup_m">Methods</td><td class="subgroup_e">Events</td><td class="subgroup_p">Properties</td></tr>
+  </thead>
+
+  <tbody>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.changeftpdirectory.htm" target="_parent">ChangeFtpDirectory</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.afterchangeftpdirectory.htm" target="_parent">AfterChangeFTPDirectory</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.ccurrentdir.htm" target="_parent">cCurrentDir</a></td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.createftpdirectory.htm" target="_parent">CreateFtpDirectory</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.aftercreateftpdirectory.htm" target="_parent">AfterCreateFTPDirectory</a></td>
+    <td>&nbsp</td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.getftpdirectory.htm" target="_parent">GetFtpDirectory</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.aftergetftpdirectory.htm" target="_parent">AfterGetFTPDirectory</a></td>
+    <td>&nbsp</td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.getftpdirectoryarray.htm" target="_parent">GetFtpDirectoryArray</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.aftergetftpdirectoryarray.htm" target="_parent">AfterGetFTPDirectoryArray</a></td>
+    <td>&nbsp</td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.removeftpdirectory.htm" target="_parent">RemoveFtpDirectory</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.afterremoveftpdirectory.htm" target="_parent">AfterRemoveFTPDirectory</a></td>
+    <td>&nbsp</td>
+   </tr>
+   <tr>
+    <td>&nbsp</td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.beforechangeftpdirectory.htm" target="_parent">BeforeChangeFTPDirectory</a></td> 
+    <td>&nbsp</td>
+   </tr>
+   <tr>
+    <td>&nbsp</td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.beforecreateftpdirectory.htm" target="_parent">BeforeCreateFTPDirectory</a></td>
+    <td>&nbsp</td>
+   </tr>
+   <tr>
+    <td>&nbsp</td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.beforegetftpdirectory.htm" target="_parent">BeforeGetFTPDirectory</a></td>
+    <td>&nbsp</td>
+   </tr>
+   <tr>
+    <td>&nbsp</td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.beforegetftpdirectoryarray.htm" target="_parent">BeforeGetFTPDirectoryArray</a></td>
+    <td>&nbsp</td>
+   </tr>
+   <tr>
+    <td>&nbsp</td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.beforeremoveftpdirectory.htm" target="_parent">BeforeRemoveFTPDirectory</a></td>
+    <td>&nbsp</td>
+   </tr>
+  </tbody>
+ </table>
+
+ <a name="system_group" />
+ <table cellspacing="0" class="pemgroup" style="margin-top:5px;">
+  <thead>
+   <tr class="pemgroup_head"><td colspan="3">System group</td></tr>
+  </thead>
+
+  <colgroup class="subgroup_m"></colgroup>
+  <colgroup class="subgroup_e"></colgroup>
+  <colgroup class="subgroup_p"></colgroup>
+
+  <thead>
+   <tr><td class="subgroup_m">Methods</td><td class="subgroup_e">Events</td><td class="subgroup_p">Properties</td></tr>
+  </thead>
+
+  <tbody>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.closeftpconnection.htm" target="_parent">CloseFtpConnection</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.afterftpcommand.htm" target="_parent">AfterFTPCommand</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.cagent.htm" target="_parent">cAgent</a></td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.closeinternet.htm" target="_parent">CloseInternet</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.aftergetconnectedstate.htm" target="_parent">AfterGetConnectedState</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.cipaddress.htm" target="_parent">cIPAddress</a></td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.ftpcommand.htm" target="_parent">FtpCommand</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.aftergoonline.htm" target="_parent">AfterGoOnline</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.cpassword.htm" target="_parent">cPassword</a></td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.getcachingmethod.htm" target="_parent">GetCachingMethod</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.beforeftpcommand.htm" target="_parent">BeforeFTPCommand</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.cport.htm" target="_parent">cPort</a></td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.getconnectedstate.htm" target="_parent">GetConnectedState</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.beforegetconnectedstate.htm" target="_parent">BeforeGetConnectedState</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.cstartupfolder.htm" target="_parent">cStartupFolder</a></td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.geterrorcode.htm" target="_parent">GetErrorCode</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.beforegoonline.htm" target="_parent">BeforeGoOnline</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.cusername.htm" target="_parent">cUserName</a></td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.getextendederrorcode.htm" target="_parent">GetExtendedErrorCode</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.beforenlst.htm" target="_parent">BeforeNLST</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.lmultioperations.htm" target="_parent">lMultiOperations</a></td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.getextendederrormsg.htm" target="_parent">GetExtendedErrorMsg</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.afternlst.htm" target="_parent">AfterNLST</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.ncachingtype.htm" target="_parent">nCachingType</a></td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.goonline.htm" target="_parent">GoOnline</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.beforelist.htm" target="_parent">BeforeList</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.nflags.htm" target="_parent">nFlags</a></td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.isglobaloffline.htm" target="_parent">IsGlobalOffline</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.afterlist.htm" target="_parent">AfterList</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.aioptions.htm" target="_parent">aIOptions</a></td>
+   </tr>
+
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.openftpconnection.htm" target="_parent">OpenFtpConnection</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.atnlst.htm" target="_parent">AtNLST</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.ftpopen.htm" target="_parent">FTPOpen</a></td>
+   </tr>
+
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.openinternet.htm" target="_parent">OpenInternet</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.atlist.htm" target="_parent">AtList</a></td>
+    <td>&nbsp;</td>
+   </tr>
+
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.resetcachingmethod.htm" target="_parent">ResetCachingMethod</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.beforereadtree.htm" target="_parent">BeforeReadTree</a></td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.setcachingmethod.htm" target="_parent">SetCachingMethod</a></td>
+    <td><a href="../code/ftp.prg/cls.ftp_service.afterreadtree.htm" target="_parent">AfterReadTree</a></td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.nlst.htm" target="_parent">NLST</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.list.htm" target="_parent">List</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.wininetsetoptions.htm" target="_parent">WinInetSetOptions</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr>
+    <td><a href="../code/ftp.prg/cls.ftp_service.readtree.htm" target="_parent">ReadTree</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+  </tbody>
+ </table>
+
+ <a name="proxy_group" />
+ <table cellspacing="0" class="pemgroup" style="margin-top:10px;">
+  <thead>
+   <tr class="pemgroup_head"><td colspan="1">Proxy group</td></tr>
+  </thead>
+
+  <colgroup class="subgroup_p"></colgroup>
+
+  <thead>
+   <tr><td class="subgroup_p">Properties</td></tr>
+  </thead>
+
+  <tbody>
+   <tr><td><a href="../code/ftp.prg/cls.ftp_service.cproxyhost.htm" target="_parent">cProxyHost</a></td></tr>
+   <tr><td><a href="../code/ftp.prg/cls.ftp_service.cproxyport.htm" target="_parent">cProxyPort</a></td></tr>
+   <tr><td><a href="../code/ftp.prg/cls.ftp_service.cproxyprotocol.htm" target="_parent">cProxyProtocol</a></td></tr>
+   <tr><td><a href="../code/ftp.prg/cls.ftp_service.luseproxy.htm" target="_parent">lUseProxy</a></td></tr>
+   <tr><td>&nbsp;</td></tr>
+   <tr><td>&nbsp;</td></tr>
+   <tr><td>&nbsp;</td></tr>
+   <tr><td>&nbsp;</td></tr>
+   <tr><td>&nbsp;</td></tr>
+   <tr><td>&nbsp;</td></tr>
+   <tr><td>&nbsp;</td></tr>
+  </tbody>
+ </table>
+</div>
+</body>
+</html>

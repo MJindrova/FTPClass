@@ -1,0 +1,790 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+<title>Class ftp_service</title>
+<meta content="text/html; charset=windows-1250" http-equiv="Content-Type" />
+<meta name="Generator" content="Project Documenting Machine" />
+<meta name="Version" content="1.3.3" />
+<link rel="stylesheet" href="../../css/foxw.css" type="text/css" />
+<link rel="stylesheet" href="../../css/sc.css" type="text/css" />
+<link rel="stylesheet" href="../../repository/ftp.css" type="text/css" />
+<script src="../../js/pdm.js" language="JavaScript" type="text/javascript"></script>
+<script src="../../repository/pdm_ab.js" language="JavaScript" type="text/javascript"></script>
+</head>
+<body class="pbb_auto">
+<h4 style=""><a name="cls.ftp_service">Class: FTP_SERVICE</a></h4>
+<table>
+ <tbody>
+  <tr><td><a href="../../GCT.htm#" title="Skip to global classes tree">Parent Class:</a></td><td>custom</td></tr>
+  <tr><td>OLE Public:</td><td><img class="imgYN" src="../../imgs/fn.gif" alt="Class FTP_SERVICE is not OLE public" /></td></tr>
+ </tbody>
+</table>
+<br />
+<a href="#cls.ftp_service::Properties" title="Skip to properties of class ftp_service">Properties</a>&nbsp;<a href="#cls.ftp_service::Methods" title="Skip to methods of class ftp_service">Methods</a>&nbsp;<br />
+<strong><a name="cls.ftp_service::Properties">Properties</a></strong>
+<table border="1" cellspacing="0">
+ <thead>
+  <tr class="Head">
+   <td class="a_center" title="Array">A</td>
+   <td class="a_center" title="Protected">P</td>
+   <td class="a_center" title="Hidden">H</td>
+   <td>Name</td>
+   <td>Initial value</td>
+   <td>Comment</td>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fy.gif" alt="Property aIOptions is array" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property aIOptions is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property aIOptions is not hidden" /></td>
+   <td>aIOptions</td>
+   <td>&nbsp;</td>
+   <td>Internet options flag&#39;s array / defult settings for new connection</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cAgent is not array" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cAgent is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cAgent is not hidden" /></td>
+   <td>cAgent</td>
+   <td>&quot;Visual FoxPro&quot; + cNULL</td>
+   <td>Name of application</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cCurrentDir is not array" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cCurrentDir is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cCurrentDir is not hidden" /></td>
+   <td>cCurrentDir</td>
+   <td>&quot;&quot;</td>
+   <td>Current folder</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cExtended_Message is not array" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cExtended_Message is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fy.gif" alt="Property cExtended_Message is hidden" /></td>
+   <td>cExtended_Message</td>
+   <td>&quot;&quot;</td>
+   <td>Extended error message</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cIPAddress is not array" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cIPAddress is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fy.gif" alt="Property cIPAddress is hidden" /></td>
+   <td>cIPAddress</td>
+   <td>&quot;&quot;</td>
+   <td>FTP server name  or IP address</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cPassword is not array" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cPassword is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fy.gif" alt="Property cPassword is hidden" /></td>
+   <td>cPassword</td>
+   <td>&quot;&quot;</td>
+   <td>FTP Password</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cPort is not array" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cPort is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fy.gif" alt="Property cPort is hidden" /></td>
+   <td>cPort</td>
+   <td>&quot;21&quot;</td>
+   <td>FTP Port (default value is 21)</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cProxyHost is not array" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cProxyHost is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cProxyHost is not hidden" /></td>
+   <td>cProxyHost</td>
+   <td>&quot;&quot;</td>
+   <td>Proxyhost</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cProxyport is not array" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cProxyport is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cProxyport is not hidden" /></td>
+   <td>cProxyport</td>
+   <td>&quot;&quot;</td>
+   <td>ProxyPort</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cProxyProtocol is not array" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cProxyProtocol is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cProxyProtocol is not hidden" /></td>
+   <td>cProxyProtocol</td>
+   <td>&quot;&quot;</td>
+   <td>Protocol for proxy</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cStartupFolder is not array" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cStartupFolder is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cStartupFolder is not hidden" /></td>
+   <td>cStartupFolder</td>
+   <td>&quot;&quot;</td>
+   <td>Startup folder</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cUserName is not array" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property cUserName is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fy.gif" alt="Property cUserName is hidden" /></td>
+   <td>cUserName</td>
+   <td>&quot;&quot;</td>
+   <td>FTP User name</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property FTPOpen is not array" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property FTPOpen is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property FTPOpen is not hidden" /></td>
+   <td>FTPOpen</td>
+   <td>.F.</td>
+   <td>result of method OpenInternet</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property lDLL_Loaded is not array" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property lDLL_Loaded is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fy.gif" alt="Property lDLL_Loaded is hidden" /></td>
+   <td>lDLL_Loaded</td>
+   <td>.F.</td>
+   <td>Internally flag of loaded API function</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property lMultiOperations is not array" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property lMultiOperations is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property lMultiOperations is not hidden" /></td>
+   <td>lMultiOperations</td>
+   <td>.T.</td>
+   <td>Sign if all FTP operations use one FTP connection</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property lUseProxy is not array" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property lUseProxy is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fy.gif" alt="Property lUseProxy is hidden" /></td>
+   <td>lUseProxy</td>
+   <td>.F.</td>
+   <td>Flag of using proxy settings</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property nCachingType is not array" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property nCachingType is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fy.gif" alt="Property nCachingType is hidden" /></td>
+   <td>nCachingType</td>
+   <td>INTERNET_FLAG_DONT_CACHE</td>
+   <td>Default caching flag</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property nConnect_Handle is not array" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property nConnect_Handle is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fy.gif" alt="Property nConnect_Handle is hidden" /></td>
+   <td>nConnect_Handle</td>
+   <td>0</td>
+   <td>Internal handle by connected to FTP server</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property nExtended_Result is not array" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property nExtended_Result is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fy.gif" alt="Property nExtended_Result is hidden" /></td>
+   <td>nExtended_Result</td>
+   <td>0</td>
+   <td>Extended error code</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property nFlags is not array" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property nFlags is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property nFlags is not hidden" /></td>
+   <td>nFlags</td>
+   <td>INTERNET_FLAG_PASSIVE</td>
+   <td>The default flag for opening FTP session</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property nInet_Handle is not array" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property nInet_Handle is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fy.gif" alt="Property nInet_Handle is hidden" /></td>
+   <td>nInet_Handle</td>
+   <td>0</td>
+   <td>Internal handle by connected to internet</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property nResult_Code is not array" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property nResult_Code is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fy.gif" alt="Property nResult_Code is hidden" /></td>
+   <td>nResult_Code</td>
+   <td>0</td>
+   <td>FTP API function&#39;s result code</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property oListPE is not array" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Property oListPE is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fy.gif" alt="Property oListPE is hidden" /></td>
+   <td>oListPE</td>
+   <td>.NULL.</td>
+   <td>List parser engine</td>
+  </tr>
+ </tbody>
+</table>
+<br />
+<strong><a name="cls.ftp_service::Methods">Methods</a></strong>
+<table border="1" cellspacing="0">
+ <thead>
+  <tr class="Head">
+   <td class="a_center" title="Protected">P</td><td class="a_center" title="Hidden">H</td><td>Name</td><td>Comment</td>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fy.gif" alt="Method _FTPCommand is protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method _FTPCommand is not hidden" /></td>
+   <td><a href="cls.ftp_service._ftpcommand.htm" title="Skip to method _FTPCommand">_FTPCommand</a></td>
+   <td>Send native FTP command to FTP server (iternal method)</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterAutoDialHangUp is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterAutoDialHangUp is not hidden" /></td>
+   <td>AfterAutoDialHangUp</td>
+   <td>Raised after calling  API function InternetAutoDialHangUp()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterAutoDialInternet is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterAutoDialInternet is not hidden" /></td>
+   <td>AfterAutoDialInternet</td>
+   <td>Raised after calling  API function InternetAutoDial()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterChangeFTPDirectory is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterChangeFTPDirectory is not hidden" /></td>
+   <td>AfterChangeFTPDirectory</td>
+   <td>Raised after calling API function FtpSetCurrentDirectory()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterCreateFTPDirectory is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterCreateFTPDirectory is not hidden" /></td>
+   <td><a href="cls.ftp_service.aftercreateftpdirectory.htm" title="Skip to method AfterCreateFTPDirectory">AfterCreateFTPDirectory</a></td>
+   <td>Raised after calling  API function FtpCreateDirectory()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterDeleteFTPFile is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterDeleteFTPFile is not hidden" /></td>
+   <td>AfterDeleteFTPFile</td>
+   <td>Raised after calling  API function FtpDeleteFile()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterDialHangUp is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterDialHangUp is not hidden" /></td>
+   <td>AfterDialHangUp</td>
+   <td>Raised after calling  API function InternetHangUp()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterDialInternet is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterDialInternet is not hidden" /></td>
+   <td>AfterDialInternet</td>
+   <td>Raised after calling  API function InternetDial()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterFTPCommand is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterFTPCommand is not hidden" /></td>
+   <td>AfterFTPCommand</td>
+   <td>Raised after calling  API function FtpCommand()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterGetConnectedState is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterGetConnectedState is not hidden" /></td>
+   <td>AfterGetConnectedState</td>
+   <td>Raised after calling  API function InternetGetConnectedState()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterGetFileSize is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterGetFileSize is not hidden" /></td>
+   <td>AfterGetFileSize</td>
+   <td>Raised after calling  API function FTPGetFileSize()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterGetFTPDirectory is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterGetFTPDirectory is not hidden" /></td>
+   <td>AfterGetFTPDirectory</td>
+   <td>Raised after calling API function FtpGetCurrentDirectory()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterGetFTPDirectoryArray is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterGetFTPDirectoryArray is not hidden" /></td>
+   <td>AfterGetFTPDirectoryArray</td>
+   <td>Raised after last calling API function FtpFindNextFile()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterGetFTPFile is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterGetFTPFile is not hidden" /></td>
+   <td>AfterGetFTPFile</td>
+   <td>Raised after calling  API function FtpGetFile()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterGoOnline is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterGoOnline is not hidden" /></td>
+   <td>AfterGoOnline</td>
+   <td>Raised after before calling  API function InternetGoOnline()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterList is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterList is not hidden" /></td>
+   <td>AfterList</td>
+   <td>Raised after closing FTP connection</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterNLST is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterNLST is not hidden" /></td>
+   <td>AfterNLST</td>
+   <td>Raised after closing FTP connection</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterPutFTPFile is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterPutFTPFile is not hidden" /></td>
+   <td>AfterPutFTPFile</td>
+   <td>Raised after calling  API function FtpPutFile()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterReadFTPFile is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterReadFTPFile is not hidden" /></td>
+   <td>AfterReadFTPFile</td>
+   <td>Raised after last calling API function InternetReadFile()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterReadTree is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterReadTree is not hidden" /></td>
+   <td>AfterReadTree</td>
+   <td>Raised after calling API function FtpSetCurrentDirectory()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterRemoveFTPDirectory is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterRemoveFTPDirectory is not hidden" /></td>
+   <td>AfterRemoveFTPDirectory</td>
+   <td>Raised after calling API function FtpRemoveDirectory()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterRenameFTPFile is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterRenameFTPFile is not hidden" /></td>
+   <td>AfterRenameFTPFile</td>
+   <td>Raised after calling  API function FtpRenameFile()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterWriteFTPFile is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AfterWriteFTPFile is not hidden" /></td>
+   <td>AfterWriteFTPFile</td>
+   <td>Raised after last calling API InternetWriteFile()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AtList is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AtList is not hidden" /></td>
+   <td>AtList</td>
+   <td>Raised after reading data from buffer</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AtNLST is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AtNLST is not hidden" /></td>
+   <td>AtNLST</td>
+   <td>Raised after reading data from buffer</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AtReadFTPFile is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AtReadFTPFile is not hidden" /></td>
+   <td>AtReadFTPFile</td>
+   <td>Raised after calling API function InternetReadFile()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AtWriteFTPFile is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AtWriteFTPFile is not hidden" /></td>
+   <td>AtWriteFTPFile</td>
+   <td>Raised after each calling  API function InternetWriteFile()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AutoDialHangUp is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AutoDialHangUp is not hidden" /></td>
+   <td><a href="cls.ftp_service.autodialhangup.htm" title="Skip to method AutoDialHangUp">AutoDialHangUp</a></td>
+   <td>Closes a modem connection</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AutoDialInternet is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method AutoDialInternet is not hidden" /></td>
+   <td><a href="cls.ftp_service.autodialinternet.htm" title="Skip to method AutoDialInternet">AutoDialInternet</a></td>
+   <td>Automatically dial the default Internet connection</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeAutoDialHangUp is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeAutoDialHangUp is not hidden" /></td>
+   <td>BeforeAutoDialHangUp</td>
+   <td>Raised before calling  API function InternetAutoDialHangUp()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeAutoDialInternet is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeAutoDialInternet is not hidden" /></td>
+   <td>BeforeAutoDialInternet</td>
+   <td>Raised before calling  API function InternetAutoDial()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeChangeFTPDirectory is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeChangeFTPDirectory is not hidden" /></td>
+   <td>BeforeChangeFTPDirectory</td>
+   <td>Raised before calling  API function FtpSetCurrentDirectory()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeCreateFTPDirectory is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeCreateFTPDirectory is not hidden" /></td>
+   <td>BeforeCreateFTPDirectory</td>
+   <td>Raised before calling  API function FtpCreateDirectory()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeDeleteFTPFile is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeDeleteFTPFile is not hidden" /></td>
+   <td>BeforeDeleteFTPFile</td>
+   <td>Raised before calling  API function FtpDeleteFile()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeDialHangUp is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeDialHangUp is not hidden" /></td>
+   <td>BeforeDialHangUp</td>
+   <td>Raised before calling  API function InternetHangUp()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeDialInternet is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeDialInternet is not hidden" /></td>
+   <td>BeforeDialInternet</td>
+   <td>Raised before calling  API function InternetDial()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeFTPCommand is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeFTPCommand is not hidden" /></td>
+   <td>BeforeFTPCommand</td>
+   <td>Raised before calling  API function FtpCommand()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeGetConnectedState is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeGetConnectedState is not hidden" /></td>
+   <td>BeforeGetConnectedState</td>
+   <td>Raised before calling  API function InternetGetConnectedState()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeGetFileSize is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeGetFileSize is not hidden" /></td>
+   <td>BeforeGetFileSize</td>
+   <td>Raised before calling  API function FTPGetFileSize()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeGetFTPDirectory is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeGetFTPDirectory is not hidden" /></td>
+   <td>BeforeGetFTPDirectory</td>
+   <td>Raised before calling  API function FtpGetCurrentDirectory()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeGetFTPDirectoryArray is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeGetFTPDirectoryArray is not hidden" /></td>
+   <td>BeforeGetFTPDirectoryArray</td>
+   <td>Raised before calling API function FtpFindFirstFile()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeGetFTPFile is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeGetFTPFile is not hidden" /></td>
+   <td>BeforeGetFTPFile</td>
+   <td>Raised before calling  API function FtpGetFile()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeGoOnline is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeGoOnline is not hidden" /></td>
+   <td>BeforeGoOnline</td>
+   <td>Raised before calling  API function InternetGoOnline()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeList is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeList is not hidden" /></td>
+   <td>BeforeList</td>
+   <td>Raised before calling API function FtpCommand</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeNLST is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeNLST is not hidden" /></td>
+   <td>BeforeNLST</td>
+   <td>Raised before calling API function FtpCommand</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforePutFTPFile is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforePutFTPFile is not hidden" /></td>
+   <td>BeforePutFTPFile</td>
+   <td>Raised before calling  API function FtpPutFile()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeReadFTPFile is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeReadFTPFile is not hidden" /></td>
+   <td>BeforeReadFTPFile</td>
+   <td>Raised before calling  API function FtpOpenFile()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeReadTree is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeReadTree is not hidden" /></td>
+   <td>BeforeReadTree</td>
+   <td>Raised before calling API function FtpSetCurrentDirectory()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeRemoveFTPDirectory is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeRemoveFTPDirectory is not hidden" /></td>
+   <td>BeforeRemoveFTPDirectory</td>
+   <td>Raised before calling  API function FtpRemoveDirectory()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeRenameFTPFile is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeRenameFTPFile is not hidden" /></td>
+   <td>BeforeRenameFTPFile</td>
+   <td>Raised before calling  API function FtpRenameFile()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeWriteFTPFile is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method BeforeWriteFTPFile is not hidden" /></td>
+   <td>BeforeWriteFTPFile</td>
+   <td>Raised before calling  API function FtpOpenFile()</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method ChangeFTPDirectory is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method ChangeFTPDirectory is not hidden" /></td>
+   <td><a href="cls.ftp_service.changeftpdirectory.htm" title="Skip to method ChangeFTPDirectory">ChangeFTPDirectory</a></td>
+   <td>Change the current directory on the FTP Server</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method CloseFTPConnection is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method CloseFTPConnection is not hidden" /></td>
+   <td><a href="cls.ftp_service.closeftpconnection.htm" title="Skip to method CloseFTPConnection">CloseFTPConnection</a></td>
+   <td>Disconnect from FTP server</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method CloseInternet is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method CloseInternet is not hidden" /></td>
+   <td><a href="cls.ftp_service.closeinternet.htm" title="Skip to method CloseInternet">CloseInternet</a></td>
+   <td>Closes any open handles to the Internet</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fy.gif" alt="Method CrackAttributes is protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method CrackAttributes is not hidden" /></td>
+   <td><a href="cls.ftp_service.crackattributes.htm" title="Skip to method CrackAttributes">CrackAttributes</a></td>
+   <td>Converting file&#39;s attributes to human&#39;s format</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fy.gif" alt="Method CrackDate is protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method CrackDate is not hidden" /></td>
+   <td><a href="cls.ftp_service.crackdate.htm" title="Skip to method CrackDate">CrackDate</a></td>
+   <td>Converting file system structure to system date</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fy.gif" alt="Method CrackFile is protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method CrackFile is not hidden" /></td>
+   <td><a href="cls.ftp_service.crackfile.htm" title="Skip to method CrackFile">CrackFile</a></td>
+   <td>Parsing file&#39;s attributes and storing to array</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method CreateFTPDirectory is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method CreateFTPDirectory is not hidden" /></td>
+   <td><a href="cls.ftp_service.createftpdirectory.htm" title="Skip to method CreateFTPDirectory">CreateFTPDirectory</a></td>
+   <td>Creates a directory on the FTP Server</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method DeleteFTPFile is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method DeleteFTPFile is not hidden" /></td>
+   <td><a href="cls.ftp_service.deleteftpfile.htm" title="Skip to method DeleteFTPFile">DeleteFTPFile</a></td>
+   <td>Delete file on the FTP Server</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method DialHangUp is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method DialHangUp is not hidden" /></td>
+   <td><a href="cls.ftp_service.dialhangup.htm" title="Skip to method DialHangUp">DialHangUp</a></td>
+   <td>Closes a dialup connection</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method DialInternet is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method DialInternet is not hidden" /></td>
+   <td><a href="cls.ftp_service.dialinternet.htm" title="Skip to method DialInternet">DialInternet</a></td>
+   <td>Attempts to use a preconfigured Dial Up account to connect to the internet</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method FTPCommand is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method FTPCommand is not hidden" /></td>
+   <td><a href="cls.ftp_service.ftpcommand.htm" title="Skip to method FTPCommand">FTPCommand</a></td>
+   <td>Send native FTP command to FTP server</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method GetCachingMethod is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method GetCachingMethod is not hidden" /></td>
+   <td><a href="cls.ftp_service.getcachingmethod.htm" title="Skip to method GetCachingMethod">GetCachingMethod</a></td>
+   <td>Returns the current caching method</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method GetConnectedState is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method GetConnectedState is not hidden" /></td>
+   <td><a href="cls.ftp_service.getconnectedstate.htm" title="Skip to method GetConnectedState">GetConnectedState</a></td>
+   <td>Returns the current type of internet connection</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method GetErrorCode is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method GetErrorCode is not hidden" /></td>
+   <td><a href="cls.ftp_service.geterrorcode.htm" title="Skip to method GetErrorCode">GetErrorCode</a></td>
+   <td>Watch dog of this FTP Service</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method GetErrorText is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method GetErrorText is not hidden" /></td>
+   <td><a href="cls.ftp_service.geterrortext.htm" title="Skip to method GetErrorText">GetErrorText</a></td>
+   <td>Get error text</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fy.gif" alt="Method GetExtendedError is protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method GetExtendedError is not hidden" /></td>
+   <td><a href="cls.ftp_service.getextendederror.htm" title="Skip to method GetExtendedError">GetExtendedError</a></td>
+   <td>Fill Extended error by WININET</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method GetExtendedErrorCode is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method GetExtendedErrorCode is not hidden" /></td>
+   <td><a href="cls.ftp_service.getextendederrorcode.htm" title="Skip to method GetExtendedErrorCode">GetExtendedErrorCode</a></td>
+   <td>Returns the extended error code that was generated during the last function call</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method GetExtendedErrorMsg is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method GetExtendedErrorMsg is not hidden" /></td>
+   <td><a href="cls.ftp_service.getextendederrormsg.htm" title="Skip to method GetExtendedErrorMsg">GetExtendedErrorMsg</a></td>
+   <td>Returns the extended error message generated during a function call</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method GetFileSize is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method GetFileSize is not hidden" /></td>
+   <td><a href="cls.ftp_service.getfilesize.htm" title="Skip to method GetFileSize">GetFileSize</a></td>
+   <td>Get File Size</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method GetFTPDirectory is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method GetFTPDirectory is not hidden" /></td>
+   <td><a href="cls.ftp_service.getftpdirectory.htm" title="Skip to method GetFTPDirectory">GetFTPDirectory</a></td>
+   <td>Get current directory on the FTP Server</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method GetFTPDirectoryArray is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method GetFTPDirectoryArray is not hidden" /></td>
+   <td><a href="cls.ftp_service.getftpdirectoryarray.htm" title="Skip to method GetFTPDirectoryArray">GetFTPDirectoryArray</a></td>
+   <td>Get a list of files from the current directory on the FTP Server</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method GetFTPFile is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method GetFTPFile is not hidden" /></td>
+   <td><a href="cls.ftp_service.getftpfile.htm" title="Skip to method GetFTPFile">GetFTPFile</a></td>
+   <td>Get file from the FTP Server</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fy.gif" alt="Method GetSystemOption is protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method GetSystemOption is not hidden" /></td>
+   <td><a href="cls.ftp_service.getsystemoption.htm" title="Skip to method GetSystemOption">GetSystemOption</a></td>
+   <td>Return any system option</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method GoOnline is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method GoOnline is not hidden" /></td>
+   <td><a href="cls.ftp_service.goonline.htm" title="Skip to method GoOnline">GoOnline</a></td>
+   <td>Brings up a dialog to the user requesting permission to go the requested URL</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fy.gif" alt="Method Init is protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method Init is not hidden" /></td>
+   <td><a href="cls.ftp_service.init.htm" title="Skip to method Init">Init</a></td>
+   <td>Occurs when an object is created.</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method IsGlobalOffline is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method IsGlobalOffline is not hidden" /></td>
+   <td><a href="cls.ftp_service.isglobaloffline.htm" title="Skip to method IsGlobalOffline">IsGlobalOffline</a></td>
+   <td>Return if is internet offline</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method List is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method List is not hidden" /></td>
+   <td><a href="cls.ftp_service.list.htm" title="Skip to method List">List</a></td>
+   <td>A character string array used to access the items in a ComboBox or ListBox control. Not available at design time; read/write at run time.</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fy.gif" alt="Method LoadAPIFuncs is protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method LoadAPIFuncs is not hidden" /></td>
+   <td><a href="cls.ftp_service.loadapifuncs.htm" title="Skip to method LoadAPIFuncs">LoadAPIFuncs</a></td>
+   <td>Load basic API functions</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method NLST is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method NLST is not hidden" /></td>
+   <td><a href="cls.ftp_service.nlst.htm" title="Skip to method NLST">NLST</a></td>
+   <td>Get a list of files and folders from the current directory on the FTP Server</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method OpenFTPConnection is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method OpenFTPConnection is not hidden" /></td>
+   <td><a href="cls.ftp_service.openftpconnection.htm" title="Skip to method OpenFTPConnection">OpenFTPConnection</a></td>
+   <td>Connect to FTP server</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method OpenInternet is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method OpenInternet is not hidden" /></td>
+   <td><a href="cls.ftp_service.openinternet.htm" title="Skip to method OpenInternet">OpenInternet</a></td>
+   <td>Attempts to open a connection to the FTP server</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method PutFTPFile is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method PutFTPFile is not hidden" /></td>
+   <td><a href="cls.ftp_service.putftpfile.htm" title="Skip to method PutFTPFile">PutFTPFile</a></td>
+   <td>Sends a file to the FTP server from some local area</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method ReadFTPFile is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method ReadFTPFile is not hidden" /></td>
+   <td><a href="cls.ftp_service.readftpfile.htm" title="Skip to method ReadFTPFile">ReadFTPFile</a></td>
+   <td>Get file from FTP do string or local file</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method ReadTree is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method ReadTree is not hidden" /></td>
+   <td><a href="cls.ftp_service.readtree.htm" title="Skip to method ReadTree">ReadTree</a></td>
+   <td>Read Tree (folders and files)</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method RemoveFTPDirectory is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method RemoveFTPDirectory is not hidden" /></td>
+   <td><a href="cls.ftp_service.removeftpdirectory.htm" title="Skip to method RemoveFTPDirectory">RemoveFTPDirectory</a></td>
+   <td>Removes a directory on the FTP Server</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method RenameFTPFile is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method RenameFTPFile is not hidden" /></td>
+   <td><a href="cls.ftp_service.renameftpfile.htm" title="Skip to method RenameFTPFile">RenameFTPFile</a></td>
+   <td>Renames a file</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method ResetCachingMethod is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method ResetCachingMethod is not hidden" /></td>
+   <td><a href="cls.ftp_service.resetcachingmethod.htm" title="Skip to method ResetCachingMethod">ResetCachingMethod</a></td>
+   <td>Reset caching method</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method SetCachingMethod is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method SetCachingMethod is not hidden" /></td>
+   <td><a href="cls.ftp_service.setcachingmethod.htm" title="Skip to method SetCachingMethod">SetCachingMethod</a></td>
+   <td>Changes the current file caching method</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fy.gif" alt="Method SetExtendedError is protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method SetExtendedError is not hidden" /></td>
+   <td><a href="cls.ftp_service.setextendederror.htm" title="Skip to method SetExtendedError">SetExtendedError</a></td>
+   <td>Set user extended error...</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method WinInetSetOptions is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method WinInetSetOptions is not hidden" /></td>
+   <td><a href="cls.ftp_service.wininetsetoptions.htm" title="Skip to method WinInetSetOptions">WinInetSetOptions</a></td>
+   <td>Set Timeout for connection</td>
+  </tr>
+  <tr>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method WriteFTPFile is not protected" /></td>
+   <td><img class="imgYN" src="../../imgs/fn.gif" alt="Method WriteFTPFile is not hidden" /></td>
+   <td><a href="cls.ftp_service.writeftpfile.htm" title="Skip to method WriteFTPFile">WriteFTPFile</a></td>
+   <td>Sends a file or string to the FTP server from some local area</td>
+  </tr>
+ </tbody>
+</table>
+<br />
+<div class="back2"><a href="#cls.ftp_service::Methods" class="b2_left" title="Skip to methods">Back Methods</a><a href="#cls.ftp_service::Methods" class="b2_right" title="Skip to methods">Back Methods</a></div>
+<div class="back2"><a href="#cls.ftp_service" class="b2_left" title="Skip to top page">Back Top</a><a href="#cls.ftp_service" class="b2_right" title="Skip to top page">Back Top</a></div>
+</body>
+</html>

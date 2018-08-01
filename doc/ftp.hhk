@@ -1,0 +1,433 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang=cs">
+<head>
+ <!-- Sitemap 1.0 -->
+ <meta content="text/html; charset=windows-1250" http-equiv="Content-Type" />
+ <meta name="Generator" content="Project Documenting Machine" />
+ <meta name="Version" content="1.3.3" />
+ <title></title>
+</head>
+<body>
+<ul>
+
+
+ <li /><object type="text/sitemap">
+  <param name="Name" value="Procedures/Functions:">
+  <param name="Local" value="about:blank">
+ </object>
+ <ul>
+  <li /><object type="text/sitemap">
+   <param name="Name" value="Main Program">
+   <param name="Local" value="code/ftp.prg/main_d.main program.htm">
+  </object>
+
+ </ul>
+
+
+ <li /><object type="text/sitemap">
+  <param name="Name" value="Methods">
+  <param name="Local" value="about:blank">
+ </object>
+ <ul>
+  <li /><object type="text/sitemap">
+   <param name="Name" value="Init">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.init.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="LoadAPIFuncs">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.loadapifuncs.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="IsGlobalOffline">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.isglobaloffline.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="AutoDialInternet">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.autodialinternet.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="AutoDialHangUp">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.autodialhangup.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="DialInternet">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.dialinternet.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="DialHangUp">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.dialhangup.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="GetConnectedState">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.getconnectedstate.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="GoOnline">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.goonline.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="OpenInternet">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.openinternet.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="WinInetSetOptions">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.wininetsetoptions.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="CloseInternet">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.closeinternet.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="OpenFTPConnection">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.openftpconnection.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="CloseFTPConnection">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.closeftpconnection.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="SetCachingMethod">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.setcachingmethod.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="GetCachingMethod">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.getcachingmethod.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="ResetCachingMethod">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.resetcachingmethod.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="GetFTPFile">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.getftpfile.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="PutFTPFile">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.putftpfile.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="WriteFTPFile">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.writeftpfile.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="ReadFTPFile">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.readftpfile.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="_FTPCommand">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service._ftpcommand.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="FTPCommand">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.ftpcommand.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="DeleteFTPFile">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.deleteftpfile.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="RenameFTPFile">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.renameftpfile.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="GetFileSize">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.getfilesize.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="CreateFTPDirectory">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.createftpdirectory.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="AfterCreateFTPDirectory">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.aftercreateftpdirectory.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="RemoveFTPDirectory">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.removeftpdirectory.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="ChangeFTPDirectory">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.changeftpdirectory.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="GetFTPDirectory">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.getftpdirectory.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="GetFTPDirectoryArray">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.getftpdirectoryarray.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="List">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.list.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="NLST">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.nlst.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="ReadTree">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.readtree.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="CrackFile">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.crackfile.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="CrackDate">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.crackdate.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="CrackAttributes">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.crackattributes.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="GetErrorCode">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.geterrorcode.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="GetExtendedErrorCode">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.getextendederrorcode.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="GetExtendedErrorMsg">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.getextendederrormsg.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="GetExtendedError">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.getextendederror.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="SetExtendedError">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.setextendederror.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="GetErrorText">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.geterrortext.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="GetSystemOption">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.getsystemoption.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="FindDT">
+   <param name="Local" value="code/ftp.prg/cls._list_parser.finddt.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="FormatDT">
+   <param name="Local" value="code/ftp.prg/cls._list_parser.formatdt.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="Parse">
+   <param name="Local" value="code/ftp.prg/cls._list_parser_1.parse.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="Parse">
+   <param name="Local" value="code/ftp.prg/cls._list_parser_4.parse.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="Parse">
+   <param name="Local" value="code/ftp.prg/cls._list_parser_0.parse.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="Parse">
+   <param name="Local" value="code/ftp.prg/cls._list_parser_engine.parse.htm">
+   <param name="Comment" value="">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="CheckFormat">
+   <param name="Local" value="code/ftp.prg/cls._list_parser_engine.checkformat.htm">
+   <param name="Comment" value="">
+  </object>
+
+ </ul>
+
+
+ <li /><object type="text/sitemap">
+  <param name="Name" value="Classes">
+  <param name="Local" value="about:blank">
+ </object>
+ <ul>
+  <li /><object type="text/sitemap">
+   <param name="Name" value="FTP_SERVICE">
+   <param name="Local" value="code/ftp.prg/cls.ftp_service.htm#cls.ftp_service">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="_LIST_PARSER">
+   <param name="Local" value="code/ftp.prg/cls._list_parser.htm#cls._list_parser">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="_LIST_PARSER_1">
+   <param name="Local" value="code/ftp.prg/cls._list_parser_1.htm#cls._list_parser_1">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="_LIST_PARSER_2">
+   <param name="Local" value="code/ftp.prg/cls._list_parser_2.htm#cls._list_parser_2">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="_LIST_PARSER_3">
+   <param name="Local" value="code/ftp.prg/cls._list_parser_3.htm#cls._list_parser_3">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="_LIST_PARSER_5">
+   <param name="Local" value="code/ftp.prg/cls._list_parser_5.htm#cls._list_parser_5">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="_LIST_PARSER_4">
+   <param name="Local" value="code/ftp.prg/cls._list_parser_4.htm#cls._list_parser_4">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="_LIST_PARSER_0">
+   <param name="Local" value="code/ftp.prg/cls._list_parser_0.htm#cls._list_parser_0">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="_LIST_PARSER_ENGINE">
+   <param name="Local" value="code/ftp.prg/cls._list_parser_engine.htm#cls._list_parser_engine">
+  </object>
+
+ </ul>
+
+
+ <li /><object type="text/sitemap">
+  <param name="Name" value="Programs">
+  <param name="Local" value="about:blank">
+ </object>
+ <ul>
+  <li /><object type="text/sitemap">
+   <param name="Name" value="ftp.prg">
+   <param name="Local" value="code/ftp.prg/main.htm">
+  </object>
+
+ </ul>
+
+
+ <li /><object type="text/sitemap">
+  <param name="Name" value="h Files">
+  <param name="Local" value="about:blank">
+ </object>
+ <ul>
+  <li /><object type="text/sitemap">
+   <param name="Name" value="core.h">
+   <param name="Local" value="others/core.h/main.htm">
+  </object>
+
+  <li /><object type="text/sitemap">
+   <param name="Name" value="ftp.h">
+   <param name="Local" value="others/ftp.h/main.htm">
+  </object>
+
+ </ul>
+
+</ul>
+</body>
+</html>
+

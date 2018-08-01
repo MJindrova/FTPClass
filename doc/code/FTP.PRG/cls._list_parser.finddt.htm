@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+<title>Method FindDT of class _LIST_PARSER</title>
+<meta content="text/html; charset=windows-1250" http-equiv="Content-Type" />
+<meta name="Generator" content="Project Documenting Machine" />
+<meta name="Version" content="1.3.3" />
+<link rel="stylesheet" href="../../css/foxw.css" type="text/css" />
+<link rel="stylesheet" href="../../css/sc.css" type="text/css" />
+<link rel="stylesheet" href="../../repository/ftp.css" type="text/css" />
+<script src="../../js/pdm.js" language="JavaScript" type="text/javascript"></script>
+<script src="../../repository/pdm_ab.js" language="JavaScript" type="text/javascript"></script>
+</head>
+<body>
+<div class="diaxp_mhead">FindDT Method</div>
+<div class="diaxp_mbody_class">
+
+<table class="clear_table">
+ <tbody>
+  <tr><td>Class: </td><td><a href="cls._list_parser.htm" title="Skip to class _list_parser">_LIST_PARSER</a></td></tr>
+  <tr><td>Description:</td><td></td></tr>
+ </tbody>
+</table>
+</div>
+<div class="diaxp_mbody">
+ <div class="SC">
+  <img onclick="ExpandSC('SP_2',-1);"class="imgEC" src="../../imgs/uptab.gif" alt="Expand/Collapse source code of procedure FindDT" id="IMG_SP_2" />
+  <span ondblclick="ExpandSC('SP_2',-1);" class="SCCaption"><a name="_LIST_PARSER">Source Code</a></span>
+  <div ondblclick="ExpandSC('SP_2',-1);" class="SCE" id="TX_SP_2">
+<!-- Code Begin -->
+<pre class="PDMCODE PDMNor" >      <span class='PDMResK'>LPARAMETERS</span> <span class='PDMVar'>INPREF</span> <span class='PDMVar'>lcData</span>
+      <span class='PDMResK'>LOCAL</span> <span class='PDMVar'>liAT</span><span class='PDMOper'>,</span><span class='PDMVar'>liy</span><span class='PDMOper'>,</span><span class='PDMVar'>liz</span><span class='PDMOper'>,</span><span class='PDMVar'>lcPom</span><span class='PDMOper'>,</span><span class='PDMVar'>liCnt</span><span class='PDMOper'>,</span><span class='PDMVar'>lcRow</span>
+      <span class='PDMVar'>lcRow</span><span class='PDMOper'>=</span><span class='PDMResF'>LOWER</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcData</span><span class='PDMOper'>)</span>
+      <span class='PDMVar'>liCnt</span> <span class='PDMOper'>=</span><span class='PDMResF'>OCCURS</span><span class='PDMOper'>(</span><span class='PDMStr'>","</span><span class='PDMOper'>,</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>cMonths</span><span class='PDMOper'>)</span><span class='PDMOper'>-</span><span class='PDMLit'>1</span>
+      <span class='PDMVar'>liAT</span><span class='PDMOper'>=</span><span class='PDMLit'>0</span>
+      <span class='PDMResK'>FOR</span> <span class='PDMVar'>liy</span><span class='PDMOper'>=</span><span class='PDMLit'>1</span> <span class='PDMResK'>TO</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>liCnt</span>
+          <span class='PDMVar'>liz</span><span class='PDMOper'>=</span><span class='PDMResF'>AT</span><span class='PDMOper'>(</span><span class='PDMStr'>","</span><span class='PDMOper'>,</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>cMonths</span><span class='PDMOper'>,</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>liy</span><span class='PDMOper'>)</span>
+          <span class='PDMVar'>lcMonth</span><span class='PDMOper'>=</span><span class='PDMResF'>SUBSTR</span><span class='PDMOper'>(</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>cMonths</span><span class='PDMOper'>,</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>liz</span><span class='PDMOper'>+</span><span class='PDMLit'>1</span><span class='PDMOper'>,</span><span class='PDMResF'>AT</span><span class='PDMOper'>(</span><span class='PDMStr'>","</span><span class='PDMOper'>,</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>cMonths</span><span class='PDMOper'>,</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>liy</span><span class='PDMOper'>+</span><span class='PDMLit'>1</span><span class='PDMOper'>)</span><span class='PDMOper'>-</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>liz</span><span class='PDMOper'>-</span><span class='PDMLit'>1</span><span class='PDMOper'>)</span>
+
+          <span class='PDMResK'>FOR</span> <span class='PDMVar'>liz</span><span class='PDMOper'>=</span><span class='PDMLit'>1</span> <span class='PDMResK'>TO</span> <span class='PDMResF'>OCCURS</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcMonth</span><span class='PDMOper'>,</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcRow</span><span class='PDMOper'>)</span>
+              <span class='PDMVar'>liAT</span><span class='PDMOper'>=</span><span class='PDMResF'>RAT</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcMonth</span><span class='PDMOper'>,</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcRow</span><span class='PDMOper'>,</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>liz</span><span class='PDMOper'>)</span>
+              <span class='PDMResK'>IF</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>liAT</span><span class='PDMOper'>=</span><span class='PDMLit'>0</span>
+                 <span class='PDMResK'>LOOP</span>
+              <span class='PDMResK'>ENDIF</span>
+              <span class='PDMVar'>lcPom</span><span class='PDMOper'>=</span><span class='PDMResF'>SUBSTR</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcData</span><span class='PDMOper'>,</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>liAT</span><span class='PDMOper'>)</span> <span class='PDMCom'>&amp;&amp; datetime info</span>
+              <span class='PDMResK'>IF</span> <span class='PDMOper'>(</span><span class='PDMResF'>SUBSTR</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcPom</span><span class='PDMOper'>,</span><span class='PDMLit'>4</span><span class='PDMOper'>,</span><span class='PDMLit'>1</span><span class='PDMOper'>)</span><span class='PDMOper'>=</span><span class='PDMStr'>" "</span> <span class='PDMOper'>AND</span> <span class='PDMResF'>SUBSTR</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcPom</span><span class='PDMOper'>,</span><span class='PDMLit'>7</span><span class='PDMOper'>,</span><span class='PDMLit'>1</span><span class='PDMOper'>)</span><span class='PDMOper'>=</span><span class='PDMStr'>" "</span> <span class='PDMOper'>AND</span> <span class='PDMResF'>VAL</span><span class='PDMOper'>(</span><span class='PDMResF'>SUBSTR</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcPom</span><span class='PDMOper'>,</span><span class='PDMLit'>5</span><span class='PDMOper'>,</span><span class='PDMLit'>2</span><span class='PDMOper'>)</span><span class='PDMOper'>)</span><span class='PDMOper'>&gt;</span><span class='PDMLit'>0</span> <span class='PDMOper'>AND</span> <span class='PDMOper'>;</span>
+                  <span class='PDMResF'>VAL</span><span class='PDMOper'>(</span><span class='PDMResF'>SUBSTR</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcPom</span><span class='PDMOper'>,</span><span class='PDMLit'>8</span><span class='PDMOper'>,</span><span class='PDMLit'>2</span><span class='PDMOper'>)</span><span class='PDMOper'>)</span><span class='PDMOper'>&gt;</span><span class='PDMLit'>0</span> <span class='PDMOper'>AND</span> <span class='PDMResF'>SUBSTR</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcPom</span><span class='PDMOper'>,</span><span class='PDMLit'>10</span><span class='PDMOper'>,</span><span class='PDMLit'>1</span><span class='PDMOper'>)</span><span class='PDMOper'>=</span><span class='PDMStr'>":"</span> <span class='PDMOper'>AND</span> <span class='PDMResF'>VAL</span><span class='PDMOper'>(</span><span class='PDMResF'>SUBSTR</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcPom</span><span class='PDMOper'>,</span><span class='PDMLit'>11</span><span class='PDMOper'>,</span><span class='PDMLit'>2</span><span class='PDMOper'>)</span><span class='PDMOper'>)</span><span class='PDMOper'>&gt;</span><span class='PDMLit'>0</span><span class='PDMOper'>)</span> <span class='PDMOper'>OR</span><span class='PDMOper'>;</span>
+                 <span class='PDMOper'>(</span><span class='PDMResF'>SUBSTR</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcPom</span><span class='PDMOper'>,</span><span class='PDMLit'>4</span><span class='PDMOper'>,</span><span class='PDMLit'>1</span><span class='PDMOper'>)</span><span class='PDMOper'>=</span><span class='PDMStr'>" "</span> <span class='PDMOper'>AND</span> <span class='PDMResF'>SUBSTR</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcPom</span><span class='PDMOper'>,</span><span class='PDMLit'>7</span><span class='PDMOper'>,</span><span class='PDMLit'>2</span><span class='PDMOper'>)</span><span class='PDMOper'>=</span><span class='PDMStr'>" "</span> <span class='PDMOper'>AND</span> <span class='PDMResF'>VAL</span><span class='PDMOper'>(</span><span class='PDMResF'>SUBSTR</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcPom</span><span class='PDMOper'>,</span><span class='PDMLit'>5</span><span class='PDMOper'>,</span><span class='PDMLit'>2</span><span class='PDMOper'>)</span><span class='PDMOper'>)</span><span class='PDMOper'>&gt;</span><span class='PDMLit'>0</span> <span class='PDMOper'>AND</span> <span class='PDMOper'>;</span>
+                  <span class='PDMResF'>VAL</span><span class='PDMOper'>(</span><span class='PDMResF'>SUBSTR</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcPom</span><span class='PDMOper'>,</span><span class='PDMLit'>9</span><span class='PDMOper'>,</span><span class='PDMLit'>4</span><span class='PDMOper'>)</span><span class='PDMOper'>)</span><span class='PDMOper'>&gt;</span><span class='PDMLit'>0</span><span class='PDMOper'>)</span>
+                 <span class='PDMResK'>EXIT</span>
+              <span class='PDMResK'>ENDIF</span>
+              <span class='PDMVar'>liAT</span><span class='PDMOper'>=</span><span class='PDMLit'>0</span>
+          <span class='PDMResK'>NEXT</span>
+          <span class='PDMResK'>IF</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>liAT</span><span class='PDMOper'>&gt;</span><span class='PDMLit'>0</span>
+             <span class='PDMResK'>EXIT</span>
+          <span class='PDMResK'>ENDIF</span>
+      <span class='PDMResK'>NEXT</span>
+      <span class='PDMResK'>RETURN</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>liAT</span> <span class='PDMCom'>&amp;&amp; Fail at parsing file</span></pre>
+ <!-- Code End -->
+  </div>
+ </div>
+</div>
+<div class="diaxp_mfoot"></div>
+<script language="JavaScript" type="text/javascript">
+lo=document.getElementById("TX_SP_2");
+lo.XType="SourceCode";
+lo.Dir="../../imgs/";
+
+
+</script>
+</body>
+</html>

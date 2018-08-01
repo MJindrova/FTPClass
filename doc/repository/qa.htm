@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" height="100%">
+<head>
+<title>FTP Class 2.4.0 - question and answers</title>
+<meta content="text/html; charset=windows-1252" http-equiv="Content-Type" />
+<link rel="stylesheet" href="../css/foxw.css" type="text/css" />
+<link rel="stylesheet" href="../css/sc.css" type="text/css" />
+<link rel="stylesheet" href="ftp.css" type="text/css" />
+<script src="../js/pdm.js" language="JavaScript" type="text/javascript"></script>
+</head>
+<body  height="100%">
+<h2>FTP Class 2.4.0 - question and answers</h2>
+
+<ul>
+ <li /><a href="#Q_0000001">How to change mode from passive to active</a>
+ <li /><a href="#Q_0000002">How to get informations about one file</a>
+ <li /><a href="#Q_0000003">How to get file size</a>
+ <li /><a href="#Q_0000004">How to use method NLST()</a>
+ <li /><a href="#Q_0000005">How to use method List()</a>
+ <li /><a href="#Q_0000006">Why result of List() method return incorrect values</a>
+ <li /><a href="#Q_0000007">Why if I call method List() with output to array VFP cause error?</a>
+ <li /><a href="#Q_0000008">Time at time VFP hangup at using FTP Class. Why?</a>
+ <li /><a href="#Q_0000009">Does FTP class support FTP over SSL?</a>
+ <li /><a href="#Q_0000010">Calling method PutFTPFile caused error 2027 - Declare DLL call caused an exception.</a>
+</ul>
+
+<h3><a name="Q_0000001">How to change mode from passive to active</a></h3>
+<pre class="PDMCODE PDMNor">
+<span class='PDMResK'>LOCAL</span> <span class='PDMVar'>loFTP</span><span class='PDMOper'>,</span><span class='PDMVar'>lii</span>
+<span class='PDMResK'>LOCAL</span> <span class='PDMResK'>ARRAY</span> <span class='PDMVar'>laFolders</span><span class='PDMOper'>(</span><span class='PDMLit'>1</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>INCLUDE</span> <span class='PDMStr'>"x:\ftp\ftp.h"</span>
+<span class='PDMResK'>SET</span> <span class='PDMResK'>PROCEDURE</span> <span class='PDMResK'>TO</span> <span class='PDMVar'>x</span>:<span class='PDMOper'>\</span><span class='PDMVar'>ftp</span><span class='PDMOper'>\</span><span class='PDMVar'>ftp</span><span class='PDMOper'>.</span><span class='PDMVar'>prg</span> <span class='PDMResK'>ADDITIVE</span> 
+<span class='PDMVar'>loFTP</span><span class='PDMOper'>=</span><span class='PDMResF'>CREATEOBJECT</span><span class='PDMOper'>(</span><span class='PDMStr'>'ftp_service'</span><span class='PDMOper'>)</span> 
+<span class='PDMVar'>loFTP</span><span class='PDMOper'>.</span><span class='PDMVar'>nFlags</span><span class='PDMOper'>=</span><span class='PDMResF'>BITXOR</span><span class='PDMOper'>(</span><span class='PDMVar'>loFTP</span><span class='PDMOper'>.</span><span class='PDMVar'>nFlags</span><span class='PDMOper'>,</span><span class='PDMVar'>INTERNET_FLAG_PASSIVE</span><span class='PDMOper'>)</span> <span class='PDMCom'>&amp;&amp; Reset passive mode</span>
+
+<span class='PDMResK'>IF</span> <span class='PDMVar'>loFTP</span><span class='PDMOper'>.</span><span class='PDMVar'>OpenInternet</span><span class='PDMOper'>(</span><span class='PDMStr'>"ABONNE"</span><span class='PDMOper'>,</span> <span class='PDMStr'>"PWD"</span><span class='PDMOper'>,</span> <span class='PDMStr'>"10.10.10.10"</span><span class='PDMOper'>,</span> <span class='PDMStr'>"21"</span><span class='PDMOper'>)</span>
+
+   <span class='PDMOper'>=</span><span class='PDMVar'>loFTP</span><span class='PDMOper'>.</span><span class='PDMVar'>ChangeFTPDirectory</span><span class='PDMOper'>(</span><span class='PDMStr'>"download"</span><span class='PDMOper'>)</span>
+   <span class='PDMResK'>IF</span> <span class='PDMOper'>!</span><span class='PDMVar'>loFTP</span><span class='PDMOper'>.</span><span class='PDMVar'>GetFTPDirectoryArray</span><span class='PDMOper'>(</span><span class='PDMOper'>@</span><span class='PDMVar'>laFolders</span><span class='PDMOper'>,</span><span class='PDMStr'>"*.zip"</span><span class='PDMOper'>)</span>
+      <span class='PDMOper'>?</span><span class='PDMVar'>loFTP</span><span class='PDMOper'>.</span><span class='PDMVar'>GetExtendedErrorCode</span><span class='PDMOper'>(</span><span class='PDMOper'>)</span><span class='PDMOper'>,</span><span class='PDMVar'>loFTP</span><span class='PDMOper'>.</span><span class='PDMVar'>GetExtendedErrorMsg</span><span class='PDMOper'>(</span><span class='PDMOper'>)</span>
+   <span class='PDMResK'>ELSE</span>
+      <span class='PDMResK'>FOR</span> <span class='PDMVar'>lii</span><span class='PDMOper'>=</span><span class='PDMLit'>1</span> <span class='PDMResK'>TO</span> <span class='PDMLit'>1</span> <span class='PDMCom'>&amp;&amp; ALEN(laFolders,1)</span>
+          <span class='PDMOper'>?</span><span class='PDMVar'>laFolders</span><span class='PDMOper'>(</span><span class='PDMVar'>lii</span><span class='PDMOper'>,</span> <span class='PDMLit'>1</span><span class='PDMOper'>)</span>         <span class='PDMCom'>&amp;&amp; File name</span>
+          <span class='PDMOper'>?</span><span class='PDMResF'>CHR</span><span class='PDMOper'>(</span><span class='PDMLit'>9</span><span class='PDMOper'>)</span><span class='PDMOper'>+</span><span class='PDMStr'>"Alternate File name: "</span><span class='PDMOper'>+</span><span class='PDMVar'>laFolders</span><span class='PDMOper'>(</span><span class='PDMVar'>lii</span><span class='PDMOper'>,</span> <span class='PDMLit'>2</span><span class='PDMOper'>)</span>
+          <span class='PDMOper'>?</span><span class='PDMResF'>CHR</span><span class='PDMOper'>(</span><span class='PDMLit'>9</span><span class='PDMOper'>)</span><span class='PDMOper'>+</span><span class='PDMStr'>"File Size: "</span><span class='PDMOper'>+</span><span class='PDMResF'>STR</span><span class='PDMOper'>(</span><span class='PDMVar'>laFolders</span><span class='PDMOper'>(</span><span class='PDMVar'>lii</span><span class='PDMOper'>,</span> <span class='PDMLit'>3</span><span class='PDMOper'>)</span><span class='PDMOper'>,</span><span class='PDMLit'>11</span><span class='PDMOper'>)</span>
+          <span class='PDMOper'>?</span><span class='PDMResF'>CHR</span><span class='PDMOper'>(</span><span class='PDMLit'>9</span><span class='PDMOper'>)</span><span class='PDMOper'>+</span><span class='PDMStr'>"File Create Date: "</span><span class='PDMOper'>+</span><span class='PDMResF'>TTOC</span><span class='PDMOper'>(</span><span class='PDMVar'>laFolders</span><span class='PDMOper'>(</span><span class='PDMVar'>lii</span><span class='PDMOper'>,</span> <span class='PDMLit'>4</span><span class='PDMOper'>)</span><span class='PDMOper'>)</span>
+          <span class='PDMOper'>?</span><span class='PDMResF'>CHR</span><span class='PDMOper'>(</span><span class='PDMLit'>9</span><span class='PDMOper'>)</span><span class='PDMOper'>+</span><span class='PDMStr'>"File Last Access Time: "</span><span class='PDMOper'>+</span><span class='PDMResF'>TTOC</span><span class='PDMOper'>(</span><span class='PDMVar'>laFolders</span><span class='PDMOper'>(</span><span class='PDMVar'>lii</span><span class='PDMOper'>,</span> <span class='PDMLit'>5</span><span class='PDMOper'>)</span><span class='PDMOper'>)</span>
+          <span class='PDMOper'>?</span><span class='PDMResF'>CHR</span><span class='PDMOper'>(</span><span class='PDMLit'>9</span><span class='PDMOper'>)</span><span class='PDMOper'>+</span><span class='PDMStr'>"File Last Write Time: "</span><span class='PDMOper'>+</span><span class='PDMResF'>TTOC</span><span class='PDMOper'>(</span><span class='PDMVar'>laFolders</span><span class='PDMOper'>(</span><span class='PDMVar'>lii</span><span class='PDMOper'>,</span> <span class='PDMLit'>6</span><span class='PDMOper'>)</span><span class='PDMOper'>)</span>
+          <span class='PDMOper'>?</span><span class='PDMResF'>CHR</span><span class='PDMOper'>(</span><span class='PDMLit'>9</span><span class='PDMOper'>)</span><span class='PDMOper'>+</span><span class='PDMStr'>"File Attributes: "</span><span class='PDMOper'>+</span><span class='PDMVar'>laFolders</span><span class='PDMOper'>(</span><span class='PDMVar'>lii</span><span class='PDMOper'>,</span> <span class='PDMLit'>7</span><span class='PDMOper'>)</span>
+          <span class='PDMResK'>IF</span> <span class='PDMOper'>!</span><span class='PDMVar'>loFTP</span><span class='PDMOper'>.</span><span class='PDMVar'>GetFTPFile</span><span class='PDMOper'>(</span><span class='PDMVar'>laFolders</span><span class='PDMOper'>(</span><span class='PDMVar'>lii</span><span class='PDMOper'>,</span> <span class='PDMLit'>1</span><span class='PDMOper'>)</span><span class='PDMOper'>,</span><span class='PDMStr'>"c:\temp\"</span><span class='PDMOper'>+</span><span class='PDMVar'>laFolders</span><span class='PDMOper'>(</span><span class='PDMVar'>lii</span><span class='PDMOper'>,</span> <span class='PDMLit'>1</span><span class='PDMOper'>)</span><span class='PDMOper'>)</span>
+             <span class='PDMOper'>?</span><span class='PDMVar'>loFTP</span><span class='PDMOper'>.</span><span class='PDMVar'>GetExtendedErrorCode</span><span class='PDMOper'>(</span><span class='PDMOper'>)</span><span class='PDMOper'>,</span><span class='PDMVar'>loFTP</span><span class='PDMOper'>.</span><span class='PDMVar'>GetExtendedErrorMsg</span><span class='PDMOper'>(</span><span class='PDMOper'>)</span>
+          <span class='PDMResK'>ENDIF</span>
+      <span class='PDMResK'>NEXT</span>
+   <span class='PDMResK'>ENDIF</span>
+   <span class='PDMOper'>=</span><span class='PDMVar'>loFTP</span><span class='PDMOper'>.</span><span class='PDMVar'>CloseInternet</span><span class='PDMOper'>(</span><span class='PDMOper'>)</span> 
+<span class='PDMResK'>ELSE</span>
+   <span class='PDMOper'>?</span><span class='PDMVar'>loFTP</span><span class='PDMOper'>.</span><span class='PDMVar'>GetExtendedErrorCode</span><span class='PDMOper'>(</span><span class='PDMOper'>)</span><span class='PDMOper'>,</span><span class='PDMVar'>loFTP</span><span class='PDMOper'>.</span><span class='PDMVar'>GetExtendedErrorMsg</span><span class='PDMOper'>(</span><span class='PDMOper'>)</span>
+<span class='PDMResK'>ENDIF</span>
+<span class='PDMResK'>RELEASE</span> <span class='PDMResK'>PROCEDURE</span> <span class='PDMVar'>x</span>:<span class='PDMOper'>\</span><span class='PDMVar'>ftp</span><span class='PDMOper'>\</span><span class='PDMVar'>ftp</span><span class='PDMOper'>.</span><span class='PDMVar'>prg</span>
+</pre>
+
+
+<h3><a name="#Q_0000002">How to get informations about one file</a></h3>
+You can use method <a href="../code/ftp.prg/cls.ftp_service.getftpdirecotryarray.htm" target="_parent">GetFTPDirectoryArray()</a>.
+<pre class="PDMCODE PDMNor">
+<span class='PDMOper'>#</span><span class='PDMResK'>INCLUDE</span> <span class='PDMStr'>"ftp.h"</span>
+<span class='PDMResK'>CLEAR</span>
+<span class='PDMVar'>lcPath</span><span class='PDMOper'>=</span><span class='PDMResF'>SYS</span><span class='PDMOper'>(</span><span class='PDMLit'>16</span><span class='PDMOper'>)</span>
+<span class='PDMVar'>lcPath</span><span class='PDMOper'>=</span><span class='PDMResF'>IIF</span><span class='PDMOper'>(</span><span class='PDMResF'>RAT</span><span class='PDMOper'>(</span><span class='PDMStr'>"\"</span><span class='PDMOper'>,</span><span class='PDMVar'>lcPath</span><span class='PDMOper'>)</span><span class='PDMOper'>&gt;</span><span class='PDMLit'>0</span><span class='PDMOper'>,</span><span class='PDMResF'>LEFT</span><span class='PDMOper'>(</span><span class='PDMVar'>lcPath</span><span class='PDMOper'>,</span><span class='PDMResF'>RAT</span><span class='PDMOper'>(</span><span class='PDMStr'>"\"</span><span class='PDMOper'>,</span><span class='PDMVar'>lcPath</span><span class='PDMOper'>)</span><span class='PDMOper'>)</span><span class='PDMOper'>,</span><span class='PDMVar'>lcPath</span><span class='PDMOper'>)</span>
+
+<span class='PDMResK'>SET</span> <span class='PDMResK'>PROCEDURE</span> <span class='PDMResK'>TO</span> <span class='PDMOper'>(</span><span class='PDMVar'>lcPath</span><span class='PDMOper'>+</span><span class='PDMStr'>"ftp.fxp"</span><span class='PDMOper'>)</span>
+<span class='PDMResK'>DIMENSION</span> <span class='PDMVar'>laFiles</span><span class='PDMOper'>(</span><span class='PDMLit'>1</span><span class='PDMOper'>)</span>
+
+<span class='PDMVar'>loFTP</span> <span class='PDMOper'>=</span> <span class='PDMResF'>CREATEOBJECT</span><span class='PDMOper'>(</span><span class='PDMStr'>'ftp_service'</span><span class='PDMOper'>)</span>
+<span class='PDMResK'>IF</span> <span class='PDMVar'>loFTP</span><span class='PDMOper'>.</span><span class='PDMVar'>OpenInternet</span><span class='PDMOper'>(</span><span class='PDMStr'>"ABONNE"</span><span class='PDMOper'>,</span> <span class='PDMStr'>"PWD"</span><span class='PDMOper'>,</span> <span class='PDMStr'>"10.10.10.10"</span><span class='PDMOper'>,</span> <span class='PDMStr'>"21"</span><span class='PDMOper'>)</span>
+    <span class='PDMOper'>=</span><span class='PDMVar'>loFTp</span><span class='PDMOper'>.</span><span class='PDMVar'>ChangeFTPDirectory</span><span class='PDMOper'>(</span><span class='PDMStr'>"Kubuntu704"</span><span class='PDMOper'>)</span>
+    <span class='PDMVar'>loFTP</span><span class='PDMOper'>.</span><span class='PDMVar'>GetFTPDirectoryArray</span><span class='PDMOper'>(</span><span class='PDMOper'>@</span><span class='PDMVar'>laFile</span><span class='PDMOper'>,</span> <span class='PDMStr'>"test.rar"</span><span class='PDMOper'>,</span><span class='PDMLit'>0</span><span class='PDMOper'>)</span>
+    <span class='PDMOper'>?</span>
+    <span class='PDMOper'>?</span><span class='PDMVar'>laFile</span><span class='PDMOper'>[</span><span class='PDMLit'>1</span><span class='PDMOper'>,</span><span class='PDMLit'>1</span><span class='PDMOper'>]</span>
+    <span class='PDMOper'>?</span><span class='PDMVar'>laFile</span><span class='PDMOper'>[</span><span class='PDMLit'>1</span><span class='PDMOper'>,</span> <span class='PDMLit'>2</span><span class='PDMOper'>]</span>
+    <span class='PDMOper'>?</span><span class='PDMVar'>laFile</span><span class='PDMOper'>[</span><span class='PDMLit'>1</span><span class='PDMOper'>,</span> <span class='PDMLit'>3</span><span class='PDMOper'>]</span>
+    <span class='PDMOper'>?</span><span class='PDMVar'>laFile</span><span class='PDMOper'>[</span><span class='PDMLit'>1</span><span class='PDMOper'>,</span> <span class='PDMLit'>4</span><span class='PDMOper'>]</span>
+    <span class='PDMOper'>?</span><span class='PDMVar'>laFile</span><span class='PDMOper'>[</span><span class='PDMLit'>1</span><span class='PDMOper'>,</span> <span class='PDMLit'>5</span><span class='PDMOper'>]</span>
+    <span class='PDMOper'>?</span><span class='PDMVar'>laFile</span><span class='PDMOper'>[</span><span class='PDMLit'>1</span><span class='PDMOper'>,</span> <span class='PDMLit'>6</span><span class='PDMOper'>]</span>
+    <span class='PDMOper'>?</span><span class='PDMVar'>laFile</span><span class='PDMOper'>[</span><span class='PDMLit'>1</span><span class='PDMOper'>,</span> <span class='PDMLit'>7</span><span class='PDMOper'>]</span>
+<span class='PDMResK'>ENDIF</span>
+<span class='PDMVar'>loFTP</span><span class='PDMOper'>.</span><span class='PDMVar'>CloseInternet</span><span class='PDMOper'>(</span><span class='PDMOper'>)</span>
+</pre>
+
+<h3><a name="#Q_0000003">How to get file size</a></h3>
+You can use method <a href="../code/ftp.prg/cls.ftp_service.getfilesize.htm" target="_parent">GetFileSize()</a>.
+<pre class="PDMCODE PDMNor">
+<span class='PDMOper'>#</span><span class='PDMResK'>INCLUDE</span> <span class='PDMStr'>"ftp.h"</span>
+<span class='PDMResK'>CLEAR</span>
+<span class='PDMResK'>LOCAL</span> <span class='PDMVar'>lnFileSize</span><span class='PDMOper'>,</span><span class='PDMVar'>lcPath</span><span class='PDMOper'>,</span><span class='PDMVar'>loFTP</span>
+<span class='PDMVar'>lcPath</span><span class='PDMOper'>=</span><span class='PDMResF'>SYS</span><span class='PDMOper'>(</span><span class='PDMLit'>16</span><span class='PDMOper'>)</span>
+<span class='PDMVar'>lcPath</span><span class='PDMOper'>=</span><span class='PDMResF'>IIF</span><span class='PDMOper'>(</span><span class='PDMResF'>RAT</span><span class='PDMOper'>(</span><span class='PDMStr'>"\"</span><span class='PDMOper'>,</span><span class='PDMVar'>lcPath</span><span class='PDMOper'>)</span><span class='PDMOper'>&gt;</span><span class='PDMLit'>0</span><span class='PDMOper'>,</span><span class='PDMResF'>LEFT</span><span class='PDMOper'>(</span><span class='PDMVar'>lcPath</span><span class='PDMOper'>,</span><span class='PDMResF'>RAT</span><span class='PDMOper'>(</span><span class='PDMStr'>"\"</span><span class='PDMOper'>,</span><span class='PDMVar'>lcPath</span><span class='PDMOper'>)</span><span class='PDMOper'>)</span><span class='PDMOper'>,</span><span class='PDMVar'>lcPath</span><span class='PDMOper'>)</span>
+<span class='PDMResK'>SET</span> <span class='PDMResK'>PROCEDURE</span> <span class='PDMResK'>TO</span> <span class='PDMOper'>(</span><span class='PDMVar'>lcPath</span><span class='PDMOper'>+</span><span class='PDMStr'>"ftp.fxp"</span><span class='PDMOper'>)</span>
+
+<span class='PDMVar'>loFTP</span> <span class='PDMOper'>=</span> <span class='PDMResF'>CREATEOBJECT</span><span class='PDMOper'>(</span><span class='PDMStr'>'ftp_service'</span><span class='PDMOper'>)</span>
+<span class='PDMResK'>IF</span> <span class='PDMVar'>loFTP</span><span class='PDMOper'>.</span><span class='PDMVar'>OpenInternet</span><span class='PDMOper'>(</span><span class='PDMStr'>"ABONNE"</span><span class='PDMOper'>,</span> <span class='PDMStr'>"PWD"</span><span class='PDMOper'>,</span> <span class='PDMStr'>"10.10.10.10"</span><span class='PDMOper'>,</span> <span class='PDMStr'>"21"</span><span class='PDMOper'>)</span>
+    <span class='PDMOper'>=</span><span class='PDMVar'>loFTp</span><span class='PDMOper'>.</span><span class='PDMVar'>ChangeFTPDirectory</span><span class='PDMOper'>(</span><span class='PDMStr'>"Kubuntu704"</span><span class='PDMOper'>)</span>
+    <span class='PDMResK'>IF</span> <span class='PDMVar'>loFTP</span><span class='PDMOper'>.</span><span class='PDMVar'>GetFileSize</span><span class='PDMOper'>(</span><span class='PDMStr'>"test.rar"</span><span class='PDMOper'>,</span><span class='PDMOper'>@</span><span class='PDMVar'>lnFileSize</span><span class='PDMOper'>)</span>
+       <span class='PDMOper'>?</span><span class='PDMVar'>lnFileSize</span>
+    <span class='PDMResK'>ENDIF</span>
+<span class='PDMResK'>ENDIF</span>
+<span class='PDMVar'>loFTP</span><span class='PDMOper'>.</span><span class='PDMVar'>CloseInternet</span><span class='PDMOper'>(</span><span class='PDMOper'>)</span>
+</pre>
+
+<h3><a name="#Q_0000004">How to use method NLST()</a></h3>
+See to examples in methods <a href="../code/ftp.prg/cls.ftp_service.nlst.htm" target="_parent">NLST()</a> method.
+
+<h3><a name="#Q_0000005">How to use method List()</a></h3>
+See to examples in methods <a href="../code/ftp.prg/cls.ftp_service.list.htm" target="_parent">List()</a> method.
+
+<h3><a name="Q_0000006">Why result of List() method return incorrect values?</a></h3>
+The result of LIST command is depend on implementation of FTP server. FTP server can send bad file size or datetime.
+
+<h3><a name="Q_0000007">Why if I call method List() with output to array the VFP cause error?</a></h3>
+The result of LIST command is very variable tha parsing can be failed. Please use output to file or string.
+
+<h3><a name="Q_0000008">Time at time VFP hangup at using FTP Class. Why?</a></h3>
+I don't know why. I know the problem if I use Golden FTP Server on local machine.
+
+<h3><a name="#Q_0000009">Does FTP class support FTP over SSL?</a></h3>
+No. But you can use VFP libcurl (http://www.ctl32.com.ar/libcurl.asp) by Carlos Alloatti or any com object as Chilkat FTP object.
+
+<h3><a name="#Q_0000010">Calling method PutFTPFile caused error 2027 - Declare DLL call caused an exception.</a></h3>
+This error can cause method ChangeFTPDirectory() where folder separator is "\" and FTP server run on UNIX/Linux.
+ Change folder separator from "\" to "/" (UNIX like) don't cause error.
+
+</body>
+</html>

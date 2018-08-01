@@ -1,0 +1,369 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+<title>Detail of h file FTP</title>
+<meta content="text/html; charset=windows-1250" http-equiv="Content-Type" />
+<meta name="Generator" content="Project Documenting Machine" />
+<meta name="Version" content="1.3.3" />
+<link rel="stylesheet" href="../../css/foxw.css" type="text/css" />
+<link rel="stylesheet" href="../../css/sc.css" type="text/css" />
+<link rel="stylesheet" href="../../repository/ftp.css" type="text/css" />
+<script src="../../js/pdm.js" language="JavaScript" type="text/javascript"></script>
+<script src="../../repository/pdm_ab.js" language="JavaScript" type="text/javascript"></script>
+</head>
+<body>
+<a name="Main_Program"></a>
+<!-- Code Begin -->
+<pre class="PDMCODE PDMNor" ><span class='PDMCom'>* !!! Don't remove next two rows !!!</span>
+
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>__FTP_INCLUDE</span>
+
+<span class='PDMOper'>#</span><span class='PDMResK'>IFNDEF</span> <span class='PDMVar'>__CORE_INCLUDE</span>
+   <span class='PDMOper'>#</span><span class='PDMResK'>INCLUDE</span> <span class='PDMStr'>"<a href="../../others/core.h/main.htm" title="Skip to h file core.h" target="_top">core.h</a>"</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>ENDIF</span>
+
+
+<span class='PDMCom'>* Internet API Returns</span>
+<span class='PDMCom'>*</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_SUCCESS</span>                              <span class='PDMLit'>0</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_FILE_NOT_FOUND</span>                       <span class='PDMLit'>2</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_PATH_NOT_FOUND</span>                       <span class='PDMLit'>3</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_ACCESS_DENIED</span>                        <span class='PDMLit'>5</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INVALID_HANDLE</span>                       <span class='PDMLit'>6</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_NO_MORE_FILES</span>                          <span class='PDMLit'>18</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_FILE_EXISTS</span>                          <span class='PDMLit'>80</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INVALID_PARAMETER</span>                    <span class='PDMLit'>87</span>
+
+<span class='PDMCom'>*** begin of olrrai fix</span>
+<span class='PDMCom'>* Timeout options</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_CALLBACK</span>                <span class='PDMLit'>1</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_CONNECT_TIMEOUT</span>         <span class='PDMLit'>2</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_CONNECT_RETRIES</span>         <span class='PDMLit'>3</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_CONNECT_BACKOFF</span>         <span class='PDMLit'>4</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_SEND_TIMEOUT</span>            <span class='PDMLit'>5</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_CONTROL_SEND_TIMEOUT</span>    <span class='PDMVar'>INTERNET_OPTION_SEND_TIMEOUT</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_RECEIVE_TIMEOUT</span>         <span class='PDMLit'>6</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_CONTROL_RECEIVE_TIMEOUT</span> <span class='PDMVar'>INTERNET_OPTION_RECEIVE_TIMEOUT</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_DATA_SEND_TIMEOUT</span>       <span class='PDMLit'>7</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_DATA_RECEIVE_TIMEOUT</span>    <span class='PDMLit'>8</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_HANDLE_TYPE</span>             <span class='PDMLit'>9</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_CONTEXT_VALUE</span>           <span class='PDMLit'>10</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_LISTEN_TIMEOUT</span>          <span class='PDMLit'>11</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_READ_BUFFER_SIZE</span>        <span class='PDMLit'>12</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_WRITE_BUFFER_SIZE</span>       <span class='PDMLit'>13</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_ASYNC_ID</span>                <span class='PDMLit'>15</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_ASYNC_PRIORITY</span>          <span class='PDMLit'>16</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_PARENT_HANDLE</span>           <span class='PDMLit'>21</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_KEEP_CONNECTION</span>         <span class='PDMLit'>22</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_REQUEST_FLAGS</span>           <span class='PDMLit'>23</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_EXTENDED_ERROR</span>          <span class='PDMLit'>24</span> <span class='PDMCom'>&amp;&amp; LONG</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_OFFLINE_MODE</span>            <span class='PDMLit'>26</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_CACHE_STREAM_HANDLE</span>     <span class='PDMLit'>27</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_USERNAME</span>                <span class='PDMLit'>28</span> <span class='PDMCom'>&amp;&amp; STRING</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_PASSWORD</span>                <span class='PDMLit'>29</span> <span class='PDMCom'>&amp;&amp; STRING</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_ASYNC</span>                   <span class='PDMLit'>30</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_SECURITY_FLAGS</span>          <span class='PDMLit'>31</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_SECURITY_CERTIFICATE_STRUCT</span>    <span class='PDMLit'>32</span> <span class='PDMCom'>&amp;&amp; STRING/STRUC</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_DATAFILE_NAME</span>           <span class='PDMLit'>33</span> <span class='PDMCom'>&amp;&amp; String</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_URL</span>                     <span class='PDMLit'>34</span> <span class='PDMCom'>&amp;&amp; STRING</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_SECURITY_CERTIFICATE</span>    <span class='PDMLit'>35</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_SECURITY_KEY_BITNESS</span>    <span class='PDMLit'>36</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_REFRESH</span>                 <span class='PDMLit'>37</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_PROXY</span>                   <span class='PDMLit'>38</span> <span class='PDMCom'>&amp;&amp; STRING/STRUC</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_SETTINGS_CHANGED</span>        <span class='PDMLit'>39</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_VERSION</span>                 <span class='PDMLit'>40</span> <span class='PDMCom'>&amp;&amp; STRING</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_USER_AGENT</span>              <span class='PDMLit'>41</span> <span class='PDMCom'>&amp;&amp; STRING/STRUC</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_PROXY_USERNAME</span>          <span class='PDMLit'>43</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_PROXY_PASSWORD</span>          <span class='PDMLit'>44</span>
+
+<span class='PDMCom'>************** end of olrrai fix</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_CONNECTED_STATE</span>            <span class='PDMLit'>50</span>
+
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPTION_MAXFLAG</span>            <span class='PDMLit'>50</span>
+
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_BASE</span>                       <span class='PDMLit'>12000</span>
+
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_OUT_OF_HANDLES</span>             <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>1</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_TIMEOUT</span>                    <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>2</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_EXTENDED_ERROR</span>             <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>3</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_INTERNAL_ERROR</span>             <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>4</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_INVALID_URL</span>                <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>5</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_UNRECOGNIZED_SCHEME</span>        <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>6</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_NAME_NOT_RESOLVED</span>          <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>7</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_PROTOCOL_NOT_FOUND</span>         <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>8</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_INVALID_OPTION</span>             <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>9</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_BAD_OPTION_LENGTH</span>          <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>10</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_OPTION_NOT_SETTABLE</span>        <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>11</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_SHUTDOWN</span>                   <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>12</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_INCORRECT_USER_NAME</span>        <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>13</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_INCORRECT_PASSWORD</span>         <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>14</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_LOGIN_FAILURE</span>              <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>15</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_INVALID_OPERATION</span>          <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>16</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_OPERATION_CANCELLED</span>        <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>17</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_INCORRECT_HANDLE_TYPE</span>      <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>18</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_INCORRECT_HANDLE_STATE</span>     <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>19</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_NOT_PROXY_REQUEST</span>          <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>20</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_REGISTRY_VALUE_NOT_FOUND</span>   <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>21</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_BAD_REGISTRY_PARAMETER</span>     <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>22</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_NO_DIRECT_ACCESS</span>           <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>23</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_NO_CONTEXT</span>                 <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>24</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_NO_CALLBACK</span>                <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>25</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_REQUEST_PENDING</span>            <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>26</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_INCORRECT_FORMAT</span>           <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>27</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_ITEM_NOT_FOUND</span>             <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>28</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_CANNOT_CONNECT</span>             <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>29</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_CONNECTION_ABORTED</span>         <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>30</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_CONNECTION_RESET</span>           <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>31</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_FORCE_RETRY</span>                <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>32</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_INVALID_PROXY_REQUEST</span>      <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>33</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_NEED_UI</span>                    <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>34</span><span class='PDMOper'>)</span>
+
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_HANDLE_EXISTS</span>              <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>36</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_SEC_CERT_DATE_INVALID</span>      <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>37</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_SEC_CERT_CN_INVALID</span>        <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>38</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_HTTP_TO_HTTPS_ON_REDIR</span>     <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>39</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_HTTPS_TO_HTTP_ON_REDIR</span>     <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>40</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_MIXED_SECURITY</span>             <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>41</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_CHG_POST_IS_NON_SECURE</span>     <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>42</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_POST_IS_NON_SECURE</span>         <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>43</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_CLIENT_AUTH_CERT_NEEDED</span>    <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>44</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_INVALID_CA</span>                 <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>45</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_CLIENT_AUTH_NOT_SETUP</span>      <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>46</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_ASYNC_THREAD_FAILED</span>        <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>47</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_REDIRECT_SCHEME_CHANGE</span>     <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>48</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_DIALOG_PENDING</span>             <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>49</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_RETRY_DIALOG</span>               <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>50</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_HTTPS_HTTP_SUBMIT_REDIR</span>    <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>52</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_INSERT_CDROM</span>               <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>53</span><span class='PDMOper'>)</span>
+
+
+
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_STATE_CONNECTED</span>     <span class='PDMLit'>1</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_STATE_DISCONNECTED</span>  <span class='PDMLit'>2</span> 
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_STATE_DISCONNECTED_BY_USER</span> <span class='PDMLit'>0x10</span> <span class='PDMCom'>&amp;&amp; no network requests being made (by Wininet)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_STATE_IDLE</span>        <span class='PDMLit'>0x100</span>          <span class='PDMCom'>&amp;&amp; network requests being made (by  Wininet)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_STATE_BUSY</span>        <span class='PDMLit'>0x200</span>
+
+
+<span class='PDMCom'>*</span>
+<span class='PDMCom'>* FTP API errors</span>
+<span class='PDMCom'>*</span>
+
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>FTP_TRANSFER_IN_PROGRESS</span>                  <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>110</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>FTP_DROPPED</span>                               <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>111</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>FTP_NO_PASSIVE_MODE</span>                       <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>112</span><span class='PDMOper'>)</span>
+
+
+<span class='PDMCom'>*</span>
+<span class='PDMCom'>* additional Internet API error codes</span>
+<span class='PDMCom'>*</span>
+
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_SECURITY_CHANNEL_ERROR</span>     <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>157</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_UNABLE_TO_CACHE_FILE</span>       <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>158</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_TCPIP_NOT_INSTALLED</span>        <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>159</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_DISCONNECTED</span>               <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>163</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_SERVER_UNREACHABLE</span>         <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>164</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_PROXY_SERVER_UNREACHABLE</span>   <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>165</span><span class='PDMOper'>)</span>
+
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_BAD_AUTO_PROXY_SCRIPT</span>      <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>166</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_UNABLE_TO_DOWNLOAD_SCRIPT</span>  <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>167</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_SEC_INVALID_CERT</span>              <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>169</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_SEC_CERT_REVOKED</span>              <span class='PDMOper'>(</span><span class='PDMVar'>ERROR_INTERNET_BASE</span> <span class='PDMOper'>+</span> <span class='PDMLit'>170</span><span class='PDMOper'>)</span>
+
+<span class='PDMCom'>*</span>
+<span class='PDMCom'>* handle types</span>
+<span class='PDMCom'>*</span>
+
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_HANDLE_TYPE_INTERNET</span>              <span class='PDMLit'>1</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_HANDLE_TYPE_CONNECT_FTP</span>           <span class='PDMLit'>2</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_HANDLE_TYPE_CONNECT_GOPHER</span>        <span class='PDMLit'>3</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_HANDLE_TYPE_CONNECT_HTTP</span>          <span class='PDMLit'>4</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_HANDLE_TYPE_FTP_FIND</span>              <span class='PDMLit'>5</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_HANDLE_TYPE_FTP_FIND_HTML</span>         <span class='PDMLit'>6</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_HANDLE_TYPE_FTP_FILE</span>              <span class='PDMLit'>7</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_HANDLE_TYPE_FTP_FILE_HTML</span>         <span class='PDMLit'>8</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_HANDLE_TYPE_GOPHER_FIND</span>           <span class='PDMLit'>9</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_HANDLE_TYPE_GOPHER_FIND_HTML</span>      <span class='PDMLit'>10</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_HANDLE_TYPE_GOPHER_FILE</span>           <span class='PDMLit'>11</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_HANDLE_TYPE_GOPHER_FILE_HTML</span>      <span class='PDMLit'>12</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>ERROR_INTERNET_HANDLE_TYPE_HTTP_REQUEST</span>          <span class='PDMLit'>13</span>
+
+
+
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>BYTE_1</span>                                             <span class='PDMLit'>1</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>BYTE_2</span>                                           <span class='PDMLit'>256</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>BYTE_3</span>                                           <span class='PDMLit'>65536</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>BYTE_4</span>                                           <span class='PDMLit'>16777216</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>MAXDWORD</span>                                         <span class='PDMLit'>4294967295</span>
+
+<span class='PDMCom'>*</span>
+<span class='PDMCom'>* File Caching Flags</span>
+<span class='PDMCom'>*</span>
+
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_FLAG_DONT_CACHE</span>                         <span class='PDMLit'>67108864</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_FLAG_HYPERLINK</span>                             <span class='PDMLit'>1024</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_FLAG_MAKE_PERSISTENT</span>                     <span class='PDMLit'>33554432</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_FLAG_MUST_CACHE_REQUEST</span>                 <span class='PDMLit'>16</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_FLAG_RELOAD</span>                             <span class='PDMLit'>2147483648</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_FLAG_NO_CACHE_WRITE</span>                     <span class='PDMLit'>67108864</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_FLAG_RESYNCHRONIZE</span>                         <span class='PDMLit'>2048</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_FLAG_NEED_FILE</span>                          <span class='PDMLit'>0x00000010</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_FLAG_OFFLINE</span>                            <span class='PDMLit'>0x00000010</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_FLAG_DONT_CARE</span>                             <span class='PDMVar'>INTERNET_FLAG_NO_CACHE_WRITE</span>
+
+
+<span class='PDMCom'>*</span>
+<span class='PDMCom'>* File Attributes</span>
+<span class='PDMCom'>*</span>
+
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>FILE_ATTRIBUTE_READONLY</span>                          <span class='PDMLit'>1</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>FILE_ATTRIBUTE_HIDDEN</span>                            <span class='PDMLit'>2</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>FILE_ATTRIBUTE_SYSTEM</span>                               <span class='PDMLit'>4</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>FILE_ATTRIBUTE_DIRECTORY</span>                         <span class='PDMLit'>16</span>  
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>FILE_ATTRIBUTE_ARCHIVE</span>                              <span class='PDMLit'>32</span>  
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>FILE_ATTRIBUTE_ENCRYPTED</span>                         <span class='PDMLit'>64</span> 
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>FILE_ATTRIBUTE_NORMAL</span>                            <span class='PDMLit'>128</span>  
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>FILE_ATTRIBUTE_TEMPORARY</span>                         <span class='PDMLit'>256</span>  
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>FILE_ATTRIBUTE_SPARSE_FILE</span>                       <span class='PDMLit'>512</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>FILE_ATTRIBUTE_REPARSE_POINT</span>                     <span class='PDMLit'>1024</span>    
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>FILE_ATTRIBUTE_COMPRESSED</span>                        <span class='PDMLit'>2048</span>  
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>FILE_ATTRIBUTE_OFFLINE</span>                           <span class='PDMLit'>4096</span>
+
+
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>BIT_ATTRIBUTE_READONLY</span>                               <span class='PDMLit'>0</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>BIT_ATTRIBUTE_HIDDEN</span>                                 <span class='PDMLit'>1</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>BIT_ATTRIBUTE_SYSTEM</span>                               <span class='PDMLit'>2</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>BIT_ATTRIBUTE_DIRECTORY</span>                              <span class='PDMLit'>4</span>  
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>BIT_ATTRIBUTE_ARCHIVE</span>                                   <span class='PDMLit'>5</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>BIT_ATTRIBUTE_ENCRYPTED</span>                             <span class='PDMLit'>6</span>  
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>BIT_ATTRIBUTE_NORMAL</span>                                 <span class='PDMLit'>7</span>  
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>BIT_ATTRIBUTE_TEMPORARY</span>                              <span class='PDMLit'>8</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>BIT_ATTRIBUTE_SPARSE_FILE</span>                         <span class='PDMLit'>9</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>BIT_ATTRIBUTE_REPARSE_POINT</span>                      <span class='PDMLit'>10</span>  
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>BIT_ATTRIBUTE_COMPRESSED</span>                             <span class='PDMLit'>11</span>  
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>BIT_ATTRIBUTE_OFFLINE</span>                                <span class='PDMLit'>12</span>  
+
+
+<span class='PDMCom'>* Flags for InternetAutodial</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_AUTODIAL_FORCE_ONLINE</span>                   <span class='PDMLit'>1</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_AUTODIAL_FORCE_UNATTENDED</span>               <span class='PDMLit'>2</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_AUTODIAL_FAILIFSECURITYCHECK</span>            <span class='PDMLit'>4</span>
+
+<span class='PDMCom'>*</span>
+<span class='PDMCom'>* FTP</span>
+<span class='PDMCom'>*TYPE</span>
+
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>FTP_TRANSFER_TYPE_UNKNOWN</span>                        <span class='PDMLit'>0</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>FTP_TRANSFER_TYPE_ASCII</span>                          <span class='PDMLit'>1</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>FTP_TRANSFER_TYPE_BINARY</span>                         <span class='PDMLit'>2</span>
+
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_FLAG_TRANSFER_ASCII</span>    <span class='PDMVar'>FTP_TRANSFER_TYPE_ASCII</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_FLAG_TRANSFER_BINARY</span>   <span class='PDMVar'>FTP_TRANSFER_TYPE_BINARY</span>
+
+
+<span class='PDMCom'>* Flags for InternetGetConnectedState</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_CONNECTION_MODEM</span>                       <span class='PDMLit'>1</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_CONNECTION_LAN</span>                         <span class='PDMLit'>2</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_CONNECTION_PROXY</span>                       <span class='PDMLit'>4</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_CONNECTION_MODEM_BUSY</span>                  <span class='PDMLit'>8</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_RAS_INSTALLED</span>                       <span class='PDMLit'>0x10</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_CONNECTION_OFFLINE</span>                  <span class='PDMLit'>0x20</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_CONNECTION_CONFIGURED</span>               <span class='PDMLit'>0x40</span>
+
+
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>FTP_TRANSFER_TYPE_MASK</span>                           <span class='PDMLit'>3</span>  <span class='PDMCom'>&amp;&amp; (FTP_TRANSFER_TYPE_ASCII | FTP_TRANSFER_TYPE_BINARY)</span>
+
+<span class='PDMCom'>*</span>
+<span class='PDMCom'>* Internet Variables</span>
+
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_INVALID_PORT_NUMBER</span>    <span class='PDMLit'>0</span>           <span class='PDMCom'>&amp;&amp; use the protocol-specific default</span>
+
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_DEFAULT_FTP_PORT</span>       <span class='PDMLit'>21</span>          <span class='PDMCom'>&amp;&amp; default for FTP servers</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_DEFAULT_GOPHER_PORT</span>    <span class='PDMLit'>70</span>          <span class='PDMCom'>&amp;&amp;    "     "  gopher "</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_DEFAULT_HTTP_PORT</span>      <span class='PDMLit'>80</span>          <span class='PDMCom'>&amp;&amp;    "     "  HTTP   "</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_DEFAULT_HTTPS_PORT</span>     <span class='PDMLit'>443</span>         <span class='PDMCom'>&amp;&amp;    "     "  HTTPS  "</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_DEFAULT_SOCKS_PORT</span>     <span class='PDMLit'>1080</span>        <span class='PDMCom'>&amp;&amp; default for SOCKS firewall servers.</span>
+
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>MAX_CACHE_ENTRY_INFO_SIZE</span>       <span class='PDMLit'>4096</span>
+
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_SERVICE_FTP</span>    <span class='PDMLit'>1</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_SERVICE_GOPHER</span> <span class='PDMLit'>2</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_SERVICE_HTTP</span>   <span class='PDMLit'>3</span>
+
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_FLAG_PASSIVE</span>           <span class='PDMLit'>0x08000000</span>  <span class='PDMCom'>&amp;&amp; used for FTP connections</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_FLAG_ASYNC</span>             <span class='PDMLit'>0x10000000</span>  <span class='PDMCom'>&amp;&amp; this request is asynchronous (where supported)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_FLAG_FROM_CACHE</span>        <span class='PDMLit'>0x01000000</span>  <span class='PDMCom'>&amp;&amp;</span>
+
+
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPEN_TYPE_PRECONFIG</span>                   <span class='PDMLit'>0</span>   <span class='PDMCom'>&amp;&amp; use registry configuration</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPEN_TYPE_DIRECT</span>                      <span class='PDMLit'>1</span>   <span class='PDMCom'>&amp;&amp; direct to net</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPEN_TYPE_PROXY</span>                       <span class='PDMLit'>3</span>   <span class='PDMCom'>&amp;&amp; via named proxy</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>INTERNET_OPEN_TYPE_PRECONFIG_WITH_NO_AUTOPROXY</span> <span class='PDMLit'>4</span> 
+
+
+
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>PRE_CONFIG_INTERNET_ACCESS</span>  <span class='PDMVar'>INTERNET_OPEN_TYPE_PRECONFIG</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>LOCAL_INTERNET_ACCESS</span>       <span class='PDMVar'>INTERNET_OPEN_TYPE_DIRECT</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>GATEWAY_INTERNET_ACCESS</span>     <span class='PDMLit'>2</span>   <span class='PDMCom'>&amp;&amp; Internet via gateway</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>CERN_PROXY_INTERNET_ACCESS</span>  <span class='PDMVar'>INTERNET_OPEN_TYPE_PROXY</span>
+
+
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>cNULL</span>                                             <span class='PDMResF'>CHR</span><span class='PDMOper'>(</span><span class='PDMLit'>0</span><span class='PDMOper'>)</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>MAX_PATH</span>                                          <span class='PDMLit'>260</span>
+
+
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>GENERIC_READ</span>                     <span class='PDMLit'>0x80000000</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>define</span> <span class='PDMVar'>GENERIC_WRITE</span>                    <span class='PDMLit'>0x40000000</span>
+
+
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_RWF_Resume</span>  <span class='PDMLit'>0</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_RWF_File</span>    <span class='PDMLit'>0</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_RWF_String</span>  <span class='PDMLit'>1</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_RWF_Rewrite</span> <span class='PDMLit'>2</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_RWF_Array</span>   <span class='PDMLit'>4</span>
+
+
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_MaxFileSize</span> <span class='PDMLit'>15000000</span>
+
+
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_Option_CurrentDir</span>           <span class='PDMLit'>1</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_Option_DLL_Loaded</span>           <span class='PDMLit'>2</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_Option_Inet_Handle</span>          <span class='PDMLit'>3</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_Option_Connect_Handle</span>       <span class='PDMLit'>4</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_Option_IPAddress</span>            <span class='PDMLit'>5</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_Option_UserName</span>             <span class='PDMLit'>6</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_Option_Password</span>             <span class='PDMLit'>7</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_Option_Port</span>                 <span class='PDMLit'>8</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_Option_UseProxy</span>             <span class='PDMLit'>9</span>
+
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_FA_Maxsize</span>        <span class='PDMLit'>20</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_FA_Default</span>        <span class='PDMLit'>1</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_FA_AccessType</span>     <span class='PDMLit'>2</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_FA_ModeFile</span>       <span class='PDMLit'>3</span>
+
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_FA_MF_Error</span>       <span class='PDMLit'>2</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_FA_MF_Append</span>      <span class='PDMLit'>1</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_FA_MF_New</span>         <span class='PDMLit'>0</span>
+
+
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_UE_FNDEF</span>     <span class='PDMOper'>-</span><span class='PDMLit'>50001</span> <span class='PDMCom'>&amp;&amp; file not define</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_UE_FNEXISTS</span>  <span class='PDMOper'>-</span><span class='PDMLit'>50002</span> <span class='PDMCom'>&amp;&amp; file not exists</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_UE_CNF</span>       <span class='PDMOper'>-</span><span class='PDMLit'>50003</span> <span class='PDMCom'>&amp;&amp; Cannot read file</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_UE_CCF</span>       <span class='PDMOper'>-</span><span class='PDMLit'>50004</span> <span class='PDMCom'>&amp;&amp; Cannot create file</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_UE_COF</span>       <span class='PDMOper'>-</span><span class='PDMLit'>50005</span> <span class='PDMCom'>&amp;&amp; Cannot open file</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_UE_CWF</span>       <span class='PDMOper'>-</span><span class='PDMLit'>50006</span> <span class='PDMCom'>&amp;&amp; Cannot write data to file</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPS_UE_PLF</span>       <span class='PDMOper'>-</span><span class='PDMLit'>50007</span> <span class='PDMCom'>&amp;&amp; Parse list failed</span>
+
+<span class='PDMOper'>#</span><span class='PDMResK'>IFNDEF</span> <span class='PDMVar'>CRLF</span>
+  <span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>CRLF</span> <span class='PDMResF'>CHR</span><span class='PDMOper'>(</span><span class='PDMLit'>13</span><span class='PDMOper'>)</span><span class='PDMOper'>+</span><span class='PDMResF'>CHR</span><span class='PDMOper'>(</span><span class='PDMLit'>10</span><span class='PDMOper'>)</span>
+
+
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPC_PL_EPLF</span> <span class='PDMLit'>0</span> <span class='PDMCom'>&amp;&amp; EPLF</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPC_PL_UNIX</span> <span class='PDMLit'>1</span> <span class='PDMCom'>&amp;&amp; UNIX </span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPC_PL_MSWIN</span> <span class='PDMLit'>2</span> <span class='PDMCom'>&amp;&amp; MSWIN</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPC_PL_DOS</span> <span class='PDMLit'>3</span> <span class='PDMCom'>&amp;&amp; DOS</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPC_PL_NWL</span> <span class='PDMLit'>4</span> <span class='PDMCom'>&amp;&amp; Novell</span>
+<span class='PDMOper'>#</span><span class='PDMResK'>DEFINE</span> <span class='PDMVar'>_FTPC_PL_MAC</span> <span class='PDMLit'>5</span> <span class='PDMCom'>&amp;&amp; Mac</span></pre>
+ <!-- Code End -->
+</body>
+</html>

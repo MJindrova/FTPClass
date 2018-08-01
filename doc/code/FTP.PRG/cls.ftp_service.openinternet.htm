@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+<title>Method OpenInternet of class FTP_SERVICE</title>
+<meta content="text/html; charset=windows-1250" http-equiv="Content-Type" />
+<meta name="Generator" content="Project Documenting Machine" />
+<meta name="Version" content="1.3.3" />
+<link rel="stylesheet" href="../../css/foxw.css" type="text/css" />
+<link rel="stylesheet" href="../../css/sc.css" type="text/css" />
+<link rel="stylesheet" href="../../repository/ftp.css" type="text/css" />
+<script src="../../js/pdm.js" language="JavaScript" type="text/javascript"></script>
+<script src="../../repository/pdm_ab.js" language="JavaScript" type="text/javascript"></script>
+</head>
+<body>
+<div class="diaxp_mhead">OpenInternet Method</div>
+<div class="diaxp_mbody_class">
+
+<table class="clear_table">
+ <tbody>
+  <tr><td>Class: </td><td><a href="cls.ftp_service.htm" title="Skip to class ftp_service">FTP_SERVICE</a></td></tr>
+  <tr><td>Description:</td><td>Attempts to open a connection to the FTP server</td></tr>
+ </tbody>
+</table>
+</div>
+<div class="diaxp_mbody">
+ <div class="SC">
+  <img onclick="ExpandSC('SP_1',-1);"class="imgEC" src="../../imgs/uptab.gif" alt="Expand/Collapse source code of procedure OpenInternet" id="IMG_SP_1" />
+  <span ondblclick="ExpandSC('SP_1',-1);" class="SCCaption"><a name="FTP_SERVICE">Source Code</a></span>
+  <div ondblclick="ExpandSC('SP_1',-1);" class="SCE" id="TX_SP_1">
+<!-- Code Begin -->
+<pre class="PDMCODE PDMNor" >      <span class='PDMResK'>LPARAMETERS</span> <span class='PDMVar'>INP</span> <span class='PDMVar'>lcUserName</span><span class='PDMOper'>,</span> <span class='PDMVar'>INP</span> <span class='PDMVar'>lcPassword</span><span class='PDMOper'>,</span><span class='PDMVar'>INP</span> <span class='PDMVar'>lcIPAddress</span><span class='PDMOper'>,</span> <span class='PDMVar'>INP</span> <span class='PDMVar'>lcPort</span><span class='PDMOper'>,</span> <span class='PDMVar'>OPT_INP</span>  <span class='PDMVar'>lnFlag</span>
+      <span class='PDMResK'>LOCAL</span> <span class='PDMVar'>lnPCount</span><span class='PDMOper'>,</span> <span class='PDMVar'>fResult</span><span class='PDMOper'>,</span><span class='PDMVar'>lnConnectHandle</span><span class='PDMOper'>,</span><span class='PDMVar'>liAccessType</span><span class='PDMOper'>,</span><span class='PDMVar'>lcProxyBypass</span><span class='PDMOper'>,</span><span class='PDMVar'>lcProxyName</span>
+
+<span class='PDMCom'>      * olrrai added:</span>
+      <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>FTPOpen</span> <span class='PDMOper'>=</span> <span class='PDMLit'>.F.</span>
+
+<span class='PDMCom'>      * Check Passed Parameters</span>
+      <span class='PDMVar'>lnPCount</span> <span class='PDMOper'>=</span> <span class='PDMResF'>PCOUNT</span><span class='PDMOper'>(</span><span class='PDMOper'>)</span>
+
+      <span class='PDMResK'>IF</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lnPCount</span> <span class='PDMOper'>&lt;</span> <span class='PDMLit'>4</span>
+         <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>nResult_Code</span> <span class='PDMOper'>=</span> <span class='PDMVar'>ERROR_INTERNET_BAD_OPTION_LENGTH</span>
+         <span class='PDMResK'>RETURN</span> <span class='PDMLit'>.F.</span>
+      <span class='PDMResK'>ENDIF</span>
+      <span class='PDMVar'>lnFlag</span><span class='PDMOper'>=</span><span class='PDMResF'>IIF</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lnPCount</span><span class='PDMOper'>&lt;</span><span class='PDMLit'>5</span><span class='PDMOper'>,</span><span class='PDMLit'>0</span><span class='PDMOper'>,</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lnFlag</span><span class='PDMOper'>)</span>
+
+<span class='PDMCom'>      * Make sure parameters are of the correct type</span>
+      <span class='PDMResK'>IF</span> <span class='PDMOper'>(</span><span class='PDMResF'>TYPE</span><span class='PDMOper'>(</span><span class='PDMStr'>"m.lcUserName"</span><span class='PDMOper'>)</span> <span class='PDMOper'>!</span><span class='PDMOper'>=</span> <span class='PDMStr'>"C"</span><span class='PDMOper'>)</span> <span class='PDMOper'>OR</span> <span class='PDMOper'>;</span>
+         <span class='PDMOper'>(</span><span class='PDMResF'>TYPE</span><span class='PDMOper'>(</span><span class='PDMStr'>"m.lcPassword"</span><span class='PDMOper'>)</span> <span class='PDMOper'>!</span><span class='PDMOper'>=</span> <span class='PDMStr'>"C"</span><span class='PDMOper'>)</span> <span class='PDMOper'>OR</span> <span class='PDMOper'>;</span>
+         <span class='PDMOper'>(</span><span class='PDMResF'>TYPE</span><span class='PDMOper'>(</span><span class='PDMStr'>"m.lcIPAddress"</span><span class='PDMOper'>)</span> <span class='PDMOper'>!</span><span class='PDMOper'>=</span> <span class='PDMStr'>"C"</span><span class='PDMOper'>)</span> <span class='PDMOper'>OR</span> <span class='PDMOper'>;</span>
+         <span class='PDMOper'>(</span><span class='PDMResF'>TYPE</span><span class='PDMOper'>(</span><span class='PDMStr'>"m.lcPort"</span><span class='PDMOper'>)</span> <span class='PDMOper'>!</span><span class='PDMOper'>=</span> <span class='PDMStr'>"C"</span><span class='PDMOper'>)</span>
+         <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>nResult_Code</span> <span class='PDMOper'>=</span> <span class='PDMVar'>ERROR_INVALID_PARAMETER</span>
+         <span class='PDMResK'>RETURN</span> <span class='PDMLit'>.F.</span>
+      <span class='PDMResK'>ENDIF</span>
+
+      <span class='PDMOper'>*</span> <span class='PDMResK'>Check</span> <span class='PDMResK'>Parameter</span> <span class='PDMResK'>Values</span>
+      <span class='PDMResK'>IF</span> <span class='PDMResF'>EMPTY</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcUserName</span><span class='PDMOper'>)</span> <span class='PDMOper'>OR</span> <span class='PDMResF'>EMPTY</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcPassword</span><span class='PDMOper'>)</span> <span class='PDMOper'>OR</span> <span class='PDMResF'>EMPTY</span><span class='PDMOper'>(</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcIPAddress</span><span class='PDMOper'>)</span>
+         <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>nResult_Code</span> <span class='PDMOper'>=</span> <span class='PDMVar'>ERROR_INVALID_PARAMETER</span>
+         <span class='PDMResK'>RETURN</span> <span class='PDMLit'>.F.</span>
+      <span class='PDMResK'>ENDIF</span>
+
+      <span class='PDMResK'>IF</span> <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>LoadAPIFuncs</span><span class='PDMOper'>(</span><span class='PDMOper'>)</span> <span class='PDMOper'>!</span><span class='PDMOper'>=</span> <span class='PDMVar'>ERROR_SUCCESS</span>
+         <span class='PDMResK'>RETURN</span> <span class='PDMLit'>.F.</span>
+      <span class='PDMResK'>ENDIF</span>
+
+
+<span class='PDMCom'>      * Open Handle to Internet</span>
+<span class='PDMCom'>      * Set Parameters</span>
+      <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>cUserName</span> <span class='PDMOper'>=</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcUserName</span> <span class='PDMOper'>+</span> <span class='PDMVar'>cNULL</span>           <span class='PDMCom'>&amp;&amp; Store FTP Connection information</span>
+      <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>cPassword</span> <span class='PDMOper'>=</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcPassword</span> <span class='PDMOper'>+</span> <span class='PDMVar'>cNULL</span>
+      <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>cIPAddress</span> <span class='PDMOper'>=</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcIPAddress</span> <span class='PDMOper'>+</span> <span class='PDMVar'>cNULL</span>
+      <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>cPort</span> <span class='PDMOper'>=</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcPort</span>
+
+<span class='PDMCom'>*http://www.foxite.com/archives/can-someone-help-me-with-ftp-problem-0000158078.htm</span>
+
+      <span class='PDMResK'>IF</span> <span class='PDMResF'>EMPTY</span><span class='PDMOper'>(</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>cProxyHost</span><span class='PDMOper'>)</span> <span class='PDMOper'>OR</span> <span class='PDMResF'>ISNULL</span><span class='PDMOper'>(</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>cProxyHost</span><span class='PDMOper'>)</span>
+         <span class='PDMVar'>lcProxyName</span> <span class='PDMOper'>=</span> <span class='PDMOper'>.</span><span class='PDMResK'>NULL</span><span class='PDMOper'>.</span>
+         <span class='PDMVar'>lcProxyBypass</span><span class='PDMOper'>=</span><span class='PDMOper'>.</span><span class='PDMResK'>NULL</span><span class='PDMOper'>.</span>
+         <span class='PDMVar'>liAccessType</span><span class='PDMOper'>=</span><span class='PDMResF'>IIF</span><span class='PDMOper'>(</span><span class='PDMResF'>TYPE</span><span class='PDMOper'>(</span><span class='PDMStr'>"m.lnFlag("</span><span class='PDMOper'>+</span><span class='PDMResF'>LTRIM</span><span class='PDMOper'>(</span><span class='PDMResF'>STR</span><span class='PDMOper'>(</span><span class='PDMVar'>_FTPS_FA_AccessType</span><span class='PDMOper'>,</span><span class='PDMLit'>11</span><span class='PDMOper'>)</span><span class='PDMOper'>)</span><span class='PDMOper'>+</span><span class='PDMStr'>")"</span><span class='PDMOper'>)</span><span class='PDMOper'>=</span><span class='PDMStr'>"N"</span><span class='PDMOper'>,</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lnFlag</span><span class='PDMOper'>(</span><span class='PDMVar'>_FTPS_FA_AccessType</span><span class='PDMOper'>)</span><span class='PDMOper'>,</span><span class='PDMVar'>INTERNET_OPEN_TYPE_DIRECT</span><span class='PDMOper'>)</span>
+         <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>lUseProxy</span> <span class='PDMOper'>=</span> <span class='PDMLit'>.F.</span>
+      <span class='PDMResK'>ELSE</span>
+<span class='PDMCom'>         *protocol=proxyhost:proxyport</span>
+<span class='PDMCom'>         *ftp=ftp://ftp_proxy_name:21 </span>
+<span class='PDMCom'>*         lcProxyName = This.cProxyProtocol+"="+ This.cProxyHost + ":" + ALLTRIM(This.cProxyport) + cNULL</span>
+         <span class='PDMVar'>lcProxyName</span> <span class='PDMOper'>=</span> <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>cProxyProtocol</span><span class='PDMOper'>+</span><span class='PDMStr'>"://"</span><span class='PDMOper'>+</span> <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>cProxyHost</span> <span class='PDMOper'>+</span> <span class='PDMStr'>":"</span> <span class='PDMOper'>+</span> <span class='PDMResF'>ALLTRIM</span><span class='PDMOper'>(</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>cProxyport</span><span class='PDMOper'>)</span> <span class='PDMOper'>+</span> <span class='PDMVar'>cNULL</span>
+         <span class='PDMVar'>lcProxyBypass</span><span class='PDMOper'>=</span><span class='PDMOper'>.</span><span class='PDMResK'>NULL</span><span class='PDMOper'>.</span> <span class='PDMCom'>&amp;&amp; This.cIPAddress</span>
+         <span class='PDMVar'>liAccessType</span><span class='PDMOper'>=</span><span class='PDMVar'>INTERNET_OPEN_TYPE_PROXY</span>
+         <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>lUseProxy</span> <span class='PDMOper'>=</span> <span class='PDMLit'>.T.</span>
+      <span class='PDMResK'>ENDIF</span>
+
+      <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>nInet_Handle</span> <span class='PDMOper'>=</span> <span class='PDMVar'>ftps_InternetOpen</span><span class='PDMOper'>(</span><span class='PDMOper'>(</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>cAgent</span><span class='PDMOper'>)</span><span class='PDMOper'>,</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>liAccessType</span><span class='PDMOper'>,</span> <span class='PDMOper'>@</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcProxyName</span><span class='PDMOper'>,</span> <span class='PDMOper'>@</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lcProxyBypass</span><span class='PDMOper'>,</span><span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>lnFlag</span><span class='PDMOper'>)</span>
+      <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>GetExtendedError</span><span class='PDMOper'>(</span><span class='PDMOper'>)</span>
+
+
+<span class='PDMCom'>      * Unable to Get a Connection into the Internet</span>
+      <span class='PDMResK'>IF</span> <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>nInet_Handle</span> <span class='PDMOper'>=</span> <span class='PDMLit'>0</span>
+         <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>CloseFTPConnection</span><span class='PDMOper'>(</span><span class='PDMOper'>)</span>
+         <span class='PDMResK'>RETURN</span> <span class='PDMLit'>.F.</span>
+      <span class='PDMResK'>ENDIF</span>
+
+<span class='PDMCom'>      *- Set options</span>
+      <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>WinInetSetOptions</span><span class='PDMOper'>(</span><span class='PDMOper'>)</span> <span class='PDMCom'>&amp;&amp; olrrai fix</span>
+
+
+<span class='PDMCom'>      * This Opens the FTP site and Gets the Current Directory.  The handle to the FTP site is opened</span>
+<span class='PDMCom'>      * and closed for each call to any function.    </span>
+<span class='PDMCom'>      * Open FTP Site </span>
+      <span class='PDMVar'>fResult</span><span class='PDMOper'>=</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>OpenFTPConnection</span><span class='PDMOper'>(</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>cStartupFolder</span><span class='PDMOper'>)</span>
+      <span class='PDMOper'>=</span><span class='PDMResF'>IIF</span><span class='PDMOper'>(</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>lMultiOperations</span><span class='PDMOper'>,</span><span class='PDMLit'>.T.</span><span class='PDMOper'>,</span><span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>CloseFTPConnection</span><span class='PDMOper'>(</span><span class='PDMOper'>)</span><span class='PDMOper'>)</span>   <span class='PDMCom'>&amp;&amp; Close FTP Handle</span>
+      <span class='PDMResK'>This</span><span class='PDMOper'>.</span><span class='PDMVar'>FTPOpen</span> <span class='PDMOper'>=</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>fResult</span> <span class='PDMCom'>&amp;&amp; olrrai added</span>
+      <span class='PDMResK'>RETURN</span> <span class='PDMVar'>m</span><span class='PDMOper'>.</span><span class='PDMVar'>fResult</span></pre>
+ <!-- Code End -->
+  </div>
+ </div>
+</div>
+<div class="diaxp_mfoot"></div>
+<script language="JavaScript" type="text/javascript">
+lo=document.getElementById("TX_SP_1");
+lo.XType="SourceCode";
+lo.Dir="../../imgs/";
+
+
+</script>
+</body>
+</html>

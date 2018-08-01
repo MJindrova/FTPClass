@@ -1,0 +1,338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang=cs">
+<head>
+<!-- Sitemap 1.0 -->
+ <title></title>
+ <meta content="text/html; charset=windows-1250" http-equiv="Content-Type" />
+ <meta name="Generator" content="Project Documenting Machine" />
+ <meta name="Version" content="1.3.3" />
+</head>
+<body>
+<ul>
+
+ <li /> <object type="text/sitemap">
+  <param name="Name" value="Project Overview">
+  <param name="Local" value="po.htm">
+ </object>
+ <li /> <object type="text/sitemap">
+  <param name="Name" value="Code files (procedures and classes), FLL libraries and APP/EXE files">
+  <param name="Local" value="code.htm">
+ </object>
+ <ul>
+  <li /> <object type="text/sitemap">
+   <param name="Name" value="Programs">
+   <param name="Local" value="code/prg_page_dprg.htm">
+  </object>
+  <ul>
+   <li /> <object type="text/sitemap">
+    <param name="Name" value="FTP.PRG">
+    <param name="Local" value="code/ftp.prg/main.htm">
+   </object>
+   <ul>
+    <li /> <object type="text/sitemap">
+     <param name="Name" value="Functions's list of program FTP">
+     <param name="Local" value="">
+    </object>
+    <ul>
+     <li /> <object type="text/sitemap">
+      <param name="Name" value="Procedure Main Program">
+      <param name="Local" value="code/ftp.prg/main_d.main program.htm">
+     </object>
+    </ul>
+    <li /> <object type="text/sitemap">
+     <param name="Name" value="Class tree">
+     <param name="Local" value="code/ftp.prg/main_t.htm">
+    </object>
+    <ul>
+     <li /> <object type="text/sitemap">
+      <param name="Name" value="Class _list_parser">
+      <param name="Local" value="code/ftp.prg/cls._list_parser.htm">
+     </object>
+     <ul>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method FindDT of class _LIST_PARSER">
+       <param name="Local" value="code/ftp.prg/cls._list_parser.finddt.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method FormatDT of class _LIST_PARSER">
+       <param name="Local" value="code/ftp.prg/cls._list_parser.formatdt.htm">
+      </object>
+     </ul>
+     <li /> <object type="text/sitemap">
+      <param name="Name" value="Class _list_parser_0">
+      <param name="Local" value="code/ftp.prg/cls._list_parser_0.htm">
+     </object>
+     <ul>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method Parse of class _LIST_PARSER_0">
+       <param name="Local" value="code/ftp.prg/cls._list_parser_0.parse.htm">
+      </object>
+     </ul>
+     <li /> <object type="text/sitemap">
+      <param name="Name" value="Class _list_parser_1">
+      <param name="Local" value="code/ftp.prg/cls._list_parser_1.htm">
+     </object>
+     <ul>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method Parse of class _LIST_PARSER_1">
+       <param name="Local" value="code/ftp.prg/cls._list_parser_1.parse.htm">
+      </object>
+     </ul>
+     <li /> <object type="text/sitemap">
+      <param name="Name" value="Class _list_parser_2">
+      <param name="Local" value="code/ftp.prg/cls._list_parser_2.htm">
+     </object>
+     <li /> <object type="text/sitemap">
+      <param name="Name" value="Class _list_parser_3">
+      <param name="Local" value="code/ftp.prg/cls._list_parser_3.htm">
+     </object>
+     <li /> <object type="text/sitemap">
+      <param name="Name" value="Class _list_parser_4">
+      <param name="Local" value="code/ftp.prg/cls._list_parser_4.htm">
+     </object>
+     <ul>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method Parse of class _LIST_PARSER_4">
+       <param name="Local" value="code/ftp.prg/cls._list_parser_4.parse.htm">
+      </object>
+     </ul>
+     <li /> <object type="text/sitemap">
+      <param name="Name" value="Class _list_parser_5">
+      <param name="Local" value="code/ftp.prg/cls._list_parser_5.htm">
+     </object>
+     <li /> <object type="text/sitemap">
+      <param name="Name" value="Class _list_parser_engine">
+      <param name="Local" value="code/ftp.prg/cls._list_parser_engine.htm">
+     </object>
+     <ul>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method CheckFormat of class _LIST_PARSER_ENGINE">
+       <param name="Local" value="code/ftp.prg/cls._list_parser_engine.checkformat.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method Parse of class _LIST_PARSER_ENGINE">
+       <param name="Local" value="code/ftp.prg/cls._list_parser_engine.parse.htm">
+      </object>
+     </ul>
+     <li /> <object type="text/sitemap">
+      <param name="Name" value="Class ftp_service">
+      <param name="Local" value="code/ftp.prg/cls.ftp_service.htm">
+     </object>
+     <ul>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method _FTPCommand of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service._ftpcommand.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method AfterCreateFTPDirectory of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.aftercreateftpdirectory.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method AutoDialHangUp of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.autodialhangup.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method AutoDialInternet of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.autodialinternet.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method ChangeFTPDirectory of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.changeftpdirectory.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method CloseFTPConnection of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.closeftpconnection.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method CloseInternet of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.closeinternet.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method CrackAttributes of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.crackattributes.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method CrackDate of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.crackdate.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method CrackFile of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.crackfile.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method CreateFTPDirectory of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.createftpdirectory.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method DeleteFTPFile of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.deleteftpfile.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method DialHangUp of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.dialhangup.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method DialInternet of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.dialinternet.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method FTPCommand of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.ftpcommand.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method GetCachingMethod of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.getcachingmethod.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method GetConnectedState of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.getconnectedstate.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method GetErrorCode of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.geterrorcode.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method GetErrorText of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.geterrortext.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method GetExtendedError of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.getextendederror.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method GetExtendedErrorCode of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.getextendederrorcode.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method GetExtendedErrorMsg of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.getextendederrormsg.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method GetFileSize of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.getfilesize.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method GetFTPDirectory of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.getftpdirectory.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method GetFTPDirectoryArray of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.getftpdirectoryarray.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method GetFTPFile of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.getftpfile.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method GetSystemOption of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.getsystemoption.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method GoOnline of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.goonline.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method Init of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.init.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method IsGlobalOffline of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.isglobaloffline.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method List of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.list.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method LoadAPIFuncs of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.loadapifuncs.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method NLST of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.nlst.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method OpenFTPConnection of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.openftpconnection.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method OpenInternet of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.openinternet.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method PutFTPFile of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.putftpfile.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method ReadFTPFile of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.readftpfile.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method ReadTree of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.readtree.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method RemoveFTPDirectory of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.removeftpdirectory.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method RenameFTPFile of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.renameftpfile.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method ResetCachingMethod of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.resetcachingmethod.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method SetCachingMethod of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.setcachingmethod.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method SetExtendedError of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.setextendederror.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method WinInetSetOptions of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.wininetsetoptions.htm">
+      </object>
+      <li /> <object type="text/sitemap">
+       <param name="Name" value="Method WriteFTPFile of class FTP_SERVICE">
+       <param name="Local" value="code/ftp.prg/cls.ftp_service.writeftpfile.htm">
+      </object>
+     </ul>
+    </ul>
+   </ul>
+  </ul>
+ </ul>
+ <li /> <object type="text/sitemap">
+  <param name="Name" value="Images and text files">
+  <param name="Local" value="other.htm">
+ </object>
+ <ul>
+  <li /> <object type="text/sitemap">
+   <param name="Name" value="h Files">
+   <param name="Local" value="others/xxx_page_dhpp.htm">
+  </object>
+  <ul>
+   <li /> <object type="text/sitemap">
+    <param name="Name" value="CORE.H">
+    <param name="Local" value="others/core.h/main.htm">
+   </object>
+   <li /> <object type="text/sitemap">
+    <param name="Name" value="FTP.H">
+    <param name="Local" value="others/ftp.h/main.htm">
+   </object>
+  </ul>
+ </ul>
+ <li /> <object type="text/sitemap">
+  <param name="Name" value="Custom Links">
+  <param name="Local" value="custom.htm">
+ </object>
+ <li /> <object type="text/sitemap">
+  <param name="Name" value="Global classes tree">
+  <param name="Local" value="gct.htm">
+ </object>
+</ul>
+</body>
+</html>
+
