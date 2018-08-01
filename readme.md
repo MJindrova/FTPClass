@@ -104,7 +104,7 @@ loFTP.CloseInternet()
 ```
 
 ### How to use method NLST()
- See to examples in methods NLST() method. 
+ See to examples in methods [NLST()](doc/code/FTP.PRG/cls.ftp_service.nlst.htm) method. 
 
 ### How to use method List()
  See to examples in methods List() method. 
