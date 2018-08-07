@@ -122,4 +122,4 @@ loFTP.CloseInternet()
  No. But you can use VFP libcurl (http://www.ctl32.com.ar/libcurl.asp) by Carlos Alloatti or any com object as Chilkat FTP object. 
 
 ### Calling method PutFTPFile caused error 2027 - Declare DLL call caused an exception.
- This error can cause method ChangeFTPDirectory() where folder separator is "\" and FTP server run on UNIX/Linux. Change folder separator from "\" to "/" (UNIX like) don't cause error.
+ This error can cause method ChangeFTPDirectory() where folder separator is "\\" and FTP server run on UNIX/Linux. Change folder separator from "\\" to "/" (UNIX like) don't cause error.
