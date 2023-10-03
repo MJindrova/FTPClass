@@ -1817,7 +1817,7 @@ DEFINE CLASS FTP_SERVICE AS custom
          IF USED(m.lcAlias)
             USE IN (m.lcAlias)
          ENDIF
-         CREATE CURSOR (m.lcAlias)  (FOLDER M, NAME M, ALTERNAME M, SIZE I, CD T, LAT T, LWT T, ATTRIB M)
+         CREATE CURSOR (m.lcAlias)  (FOLDER M, NAME M, ALTERNAME M, SIZE I, CD T, LAT T, LWT T, ATTRIB M, FAIL L)
          lcCurFolder=This.cCurrentDir
          llNext=IIF(!EMPTY(m.lcFolder),This.ChangeFTPDirectory(m.lcFolder),.T.)
          liCount=0
@@ -1831,22 +1831,24 @@ DEFINE CLASS FTP_SERVICE AS custom
 
             SELECT (m.lcAlias)
             GO TOP
-            SCAN WHILE m.llNext AND m.llChild
+            SCAN WHILE m.llChild
                  IF NOT ATTRIB=="D" 
                     LOOP
                  ENDIF   
 
                  liRecno=RECNO()
 
-                 llNext=This.ChangeFTPDirectory(FOLDER+"/"+NAME)
-                 llNext=m.llNext AND This.GetFTPDirectoryArray(@m.laFiles,"*.*",0,@m.liCount) && read all files and folders
-                 IF m.liCount>0 
-                    FOR lii=1 TO ALEN(m.laFiles,1)
-                        INSERT INTO (m.lcAlias) (FOLDER, NAME, ALTERNAME, SIZE, CD, LAT, LWT, ATTRIB);
-                           VALUES;
-                           (This.cCurrentDir,m.laFiles(m.lii,1),m.laFiles(m.lii,2),m.laFiles(m.lii,3),m.laFiles(m.lii,4),m.laFiles(m.lii,5),m.laFiles(m.lii,6),m.laFiles(m.lii,7))
-                    NEXT
-                 ENDIF   
+                 IF This.ChangeFTPDirectory(FOLDER+"/"+NAME) AND This.GetFTPDirectoryArray(@m.laFiles, "*.*", 0, @m.liCount) && read all files and folders
+                    IF m.liCount>0 
+                       FOR lii=1 TO ALEN(m.laFiles,1)
+                           INSERT INTO (m.lcAlias) (FOLDER, NAME, ALTERNAME, SIZE, CD, LAT, LWT, ATTRIB);
+                              VALUES;
+                              (This.cCurrentDir,m.laFiles(m.lii,1),m.laFiles(m.lii,2),m.laFiles(m.lii,3),m.laFiles(m.lii,4),m.laFiles(m.lii,5),m.laFiles(m.lii,6),m.laFiles(m.lii,7))
+                       NEXT
+                     ENDIF
+                 ELSE
+                    REPLACE FAIL WITH .T.
+                 ENDIF
                  
                  SELECT (m.lcAlias)
                  GO (m.liRecno)
